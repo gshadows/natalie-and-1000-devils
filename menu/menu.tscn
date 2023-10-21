@@ -1,0 +1,542 @@
+[gd_scene load_steps=11 format=3 uid="uid://1a0sqergq7ku"]
+
+[ext_resource type="Script" path="res://menu/menu.gd" id="1_mcigp"]
+[ext_resource type="Texture2D" uid="uid://skj80tfukfvy" path="res://icon.svg" id="2_ki6ff"]
+[ext_resource type="AudioStream" uid="uid://dapuwxsk7lcy2" path="res://audio/music_zapsplat_aiming_high.mp3" id="3_nwj2g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7qnn"]
+size = Vector2(379, 267)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhuim"]
+bg_color = Color(0.203922, 0.203922, 0.203922, 1)
+
+[sub_resource type="Animation" id="Animation_3o5r6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonStop:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(512, 226)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SettingsPanel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(383, 186)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("InfoPanel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(203, 87)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("InfoPanel:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("InfoPanel:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(747, 474)]
+}
+
+[sub_resource type="Animation" id="Animation_codrw"]
+resource_name = "show_info"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InfoPanel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(579, 98), Vector2(203, 87)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InfoPanel:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [25.1327, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("InfoPanel:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2.14355, 1),
+"update": 0,
+"values": [Vector2(79, 60), Vector2(747, 474)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("InfoPanel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.258817, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rmsby"]
+resource_name = "show_settings"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsPanel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(383, 354), Vector2(383, 186)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SettingsPanel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fsihg"]
+resource_name = "show_stop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonStop:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ButtonStop:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0001, 1),
+"transitions": PackedFloat32Array(0.210225, 1),
+"update": 0,
+"values": [Vector2(512, 226), Vector2(683, 226)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m4cgt"]
+_data = {
+"RESET": SubResource("Animation_3o5r6"),
+"show_info": SubResource("Animation_codrw"),
+"show_settings": SubResource("Animation_rmsby"),
+"show_stop": SubResource("Animation_fsihg")
+}
+
+[node name="MainMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_mcigp")
+
+[node name="TitleLogo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -279.0
+offset_right = 64.0
+offset_bottom = -151.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ki6ff")
+
+[node name="StartStopHover" type="Area2D" parent="."]
+visibility_layer = 0
+monitoring = false
+monitorable = false
+
+[node name="ShapeCast2D" type="CollisionShape2D" parent="StartStopHover"]
+position = Vector2(663, 254)
+shape = SubResource("RectangleShape2D_w7qnn")
+
+[node name="ButtonStop" type="TextureButton" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -98.0
+offset_right = 64.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+disabled = true
+texture_normal = ExtResource("2_ki6ff")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ButtonStart" type="TextureButton" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -98.0
+offset_right = 64.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_ki6ff")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ButtonSettings" type="TextureButton" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -21.0
+offset_right = 64.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_ki6ff")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ButtonInfo" type="TextureButton" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 52.0
+offset_right = 64.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_ki6ff")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ButtonQuit" type="TextureButton" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 122.0
+offset_right = 64.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_ki6ff")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="SettingsPanel" type="Panel" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -193.0
+offset_top = -138.0
+offset_right = 194.0
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_fhuim")
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Settings" type="VBoxContainer" parent="SettingsPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleVideo" type="Label" parent="SettingsPanel/MarginContainer/Settings"]
+layout_mode = 2
+text = "ЭКРАН"
+
+[node name="FullScreen" type="CheckBox" parent="SettingsPanel/MarginContainer/Settings"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "ПОЛНЫЙ ЭКРАН"
+
+[node name="TitleAudio" type="Label" parent="SettingsPanel/MarginContainer/Settings"]
+layout_mode = 2
+text = "ГРОМКОСТЬ"
+
+[node name="MasterGroup" type="HBoxContainer" parent="SettingsPanel/MarginContainer/Settings"]
+layout_mode = 2
+
+[node name="MasterEnable" type="CheckBox" parent="SettingsPanel/MarginContainer/Settings/MasterGroup"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "ОБЩАЯ"
+
+[node name="VolMaster" type="HSlider" parent="SettingsPanel/MarginContainer/Settings/MasterGroup"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 2.0
+step = 0.01
+
+[node name="SfxGroup" type="HBoxContainer" parent="SettingsPanel/MarginContainer/Settings"]
+layout_mode = 2
+
+[node name="SfxEnable" type="CheckBox" parent="SettingsPanel/MarginContainer/Settings/SfxGroup"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "ЗВУКИ"
+
+[node name="VolSfx" type="HSlider" parent="SettingsPanel/MarginContainer/Settings/SfxGroup"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 2.0
+step = 0.01
+
+[node name="MusicGroup" type="HBoxContainer" parent="SettingsPanel/MarginContainer/Settings"]
+layout_mode = 2
+
+[node name="MusicEnable" type="CheckBox" parent="SettingsPanel/MarginContainer/Settings/MusicGroup"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "МУЗЫКА"
+
+[node name="VolMusic" type="HSlider" parent="SettingsPanel/MarginContainer/Settings/MusicGroup"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 2.0
+step = 0.01
+
+[node name="ButtonOk" type="Button" parent="SettingsPanel/MarginContainer/Settings"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "ГОТОВО"
+
+[node name="InfoPanel" type="Panel" parent="."]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -373.0
+offset_top = -237.0
+offset_right = 374.0
+offset_bottom = 237.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_fhuim")
+
+[node name="MarginContainer" type="MarginContainer" parent="InfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Info" type="VBoxContainer" parent="InfoPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleAbout" type="Label" parent="InfoPanel/MarginContainer/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "ОПИСАНИЕ"
+
+[node name="TextAbout" type="Label" parent="InfoPanel/MarginContainer/Info"]
+layout_mode = 2
+text = "Игра на PGD Game Jam #13 (Halloween).
+Тема джема: Ты их не видишь, но они есть
+Поймай всех чёртиков пока они не съели твои тыквы!"
+
+[node name="TitleControls" type="Label" parent="InfoPanel/MarginContainer/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+text = "УПРАВЛЕНИЕ"
+
+[node name="TextControls" type="Label" parent="InfoPanel/MarginContainer/Info"]
+layout_mode = 2
+text = "WA - ходить; SD - высота банки; пробел / ЛКМ - ловить! (ESC - меню)"
+
+[node name="TitleAuthors" type="Label" parent="InfoPanel/MarginContainer/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "АВТОРЫ"
+
+[node name="TextAuthors" type="Label" parent="InfoPanel/MarginContainer/Info"]
+layout_mode = 2
+text = "G-Shadow"
+
+[node name="TitleCopyright" type="Label" parent="InfoPanel/MarginContainer/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 1, 1)
+text = "АВТОРСКИЕ ПРАВА"
+
+[node name="TextCopyright" type="Label" parent="InfoPanel/MarginContainer/Info"]
+layout_mode = 2
+text = "Бесплатные звуки: https://freesound.org
+Бесплатная музыка: https://www.zapsplat.com
+Бесплатные шрифты: встроенный в Godot
+Игровой движок: Godot 4.1.2
+Инструменты: Blender 3.6.0; Paint.NET 4.3.7"
+
+[node name="ButtonThanks" type="Button" parent="InfoPanel/MarginContainer/Info"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "   СПАСИБО   "
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m4cgt")
+}
+
+[node name="MenuSFX" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_nwj2g")
+bus = &"Music"
+
+[connection signal="mouse_entered" from="StartStopHover" to="." method="_on_start_stop_hover_mouse_entered"]
+[connection signal="mouse_exited" from="StartStopHover" to="." method="_on_start_stop_hover_mouse_exited"]
+[connection signal="mouse_entered" from="ButtonStop" to="." method="_play_hover"]
+[connection signal="pressed" from="ButtonStop" to="." method="_on_button_stop_pressed"]
+[connection signal="mouse_entered" from="ButtonStart" to="." method="_play_hover"]
+[connection signal="pressed" from="ButtonStart" to="." method="_on_button_start_pressed"]
+[connection signal="mouse_entered" from="ButtonSettings" to="." method="_play_hover"]
+[connection signal="pressed" from="ButtonSettings" to="." method="_on_button_settings_pressed"]
+[connection signal="mouse_entered" from="ButtonInfo" to="." method="_play_hover"]
+[connection signal="pressed" from="ButtonInfo" to="." method="_on_button_info_pressed"]
+[connection signal="mouse_entered" from="ButtonQuit" to="." method="_play_hover"]
+[connection signal="pressed" from="ButtonQuit" to="." method="_on_button_quit_pressed"]
+[connection signal="mouse_entered" from="SettingsPanel/MarginContainer/Settings/FullScreen" to="." method="_play_hover"]
+[connection signal="toggled" from="SettingsPanel/MarginContainer/Settings/FullScreen" to="." method="_on_full_screen_toggled"]
+[connection signal="mouse_entered" from="SettingsPanel/MarginContainer/Settings/MasterGroup/MasterEnable" to="." method="_play_hover"]
+[connection signal="toggled" from="SettingsPanel/MarginContainer/Settings/MasterGroup/MasterEnable" to="." method="_on_master_enable_toggled"]
+[connection signal="mouse_entered" from="SettingsPanel/MarginContainer/Settings/MasterGroup/VolMaster" to="." method="_play_hover"]
+[connection signal="value_changed" from="SettingsPanel/MarginContainer/Settings/MasterGroup/VolMaster" to="." method="_on_vol_master_value_changed"]
+[connection signal="mouse_entered" from="SettingsPanel/MarginContainer/Settings/SfxGroup/SfxEnable" to="." method="_play_hover"]
+[connection signal="toggled" from="SettingsPanel/MarginContainer/Settings/SfxGroup/SfxEnable" to="." method="_on_sfx_enable_toggled"]
+[connection signal="mouse_entered" from="SettingsPanel/MarginContainer/Settings/SfxGroup/VolSfx" to="." method="_play_hover"]
+[connection signal="value_changed" from="SettingsPanel/MarginContainer/Settings/SfxGroup/VolSfx" to="." method="_on_vol_sfx_value_changed"]
+[connection signal="mouse_entered" from="SettingsPanel/MarginContainer/Settings/MusicGroup/MusicEnable" to="." method="_play_hover"]
+[connection signal="toggled" from="SettingsPanel/MarginContainer/Settings/MusicGroup/MusicEnable" to="." method="_on_music_enable_toggled"]
+[connection signal="mouse_entered" from="SettingsPanel/MarginContainer/Settings/MusicGroup/VolMusic" to="." method="_play_hover"]
+[connection signal="value_changed" from="SettingsPanel/MarginContainer/Settings/MusicGroup/VolMusic" to="." method="_on_vol_music_value_changed"]
+[connection signal="mouse_entered" from="SettingsPanel/MarginContainer/Settings/ButtonOk" to="." method="_play_hover"]
+[connection signal="pressed" from="SettingsPanel/MarginContainer/Settings/ButtonOk" to="." method="_on_button_ok_pressed"]
+[connection signal="mouse_entered" from="InfoPanel/MarginContainer/Info/ButtonThanks" to="." method="_play_hover"]
+[connection signal="pressed" from="InfoPanel/MarginContainer/Info/ButtonThanks" to="." method="_on_button_thanks_pressed"]
