@@ -10,6 +10,8 @@ export.cfg
 _export
 _releases
 
+_tmp
+
 # Imported translations (automatically generated from CSV files)
 *.translation
 

@@ -20,7 +20,7 @@ func _on_start() -> void:
 	_on_load_game(GAME_START_SCENE)
 
 func _on_load_game(scene_path: String) -> void:
-	_game.queue_free()
+	if _game: _game.queue_free()
 	_game = load(scene_path).instantiate()
 	add_child(_game)
 
