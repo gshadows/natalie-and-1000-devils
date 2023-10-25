@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Natalie and 1000 Devils"
+config/name="Натали и Тысяча Чертей"
 config/description="A game for PGD Game Jam #13: You don't see it, but it exists.
 (c) G-Shadow, 2023.
 Free sounds: https://freesound.org
@@ -27,6 +27,11 @@ buses/default_bus_layout="res://config/default_bus_layout.tres"
 
 Game="*res://game.gd"
 Settings="*res://utils/settings.gd"
+
+[filesystem]
+
+import/blender/enabled=false
+import/fbx/enabled=false
 
 [input]
 
