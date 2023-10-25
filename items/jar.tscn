@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://jxf7q2ecq3dj"]
+
+[ext_resource type="PackedScene" uid="uid://5hwhj0mslde8" path="res://models/jar.glb" id="1_mhdkw"]
+
+[node name="Jar" instance=ExtResource("1_mhdkw")]
