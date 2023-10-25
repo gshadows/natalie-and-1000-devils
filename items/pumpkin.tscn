@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://d07fw7i4rldnv"]
+
+[ext_resource type="Script" path="res://items/pumpkin.gd" id="1_6t7oy"]
+[ext_resource type="PackedScene" uid="uid://dcqddtfleskpk" path="res://models/pumpkin_1.tscn" id="2_y2g02"]
+[ext_resource type="PackedScene" uid="uid://23rdf2xoboeg" path="res://models/pumpkin_13.tscn" id="3_27ei0"]
+[ext_resource type="PackedScene" uid="uid://7kjvq0pmicno" path="res://models/pumpkin_23.tscn" id="4_i8bgn"]
+
+[sub_resource type="Animation" id="Animation_iww8s"]
+resource_name = "shake"
+length = 0.85
+step = 0.05
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.1, 1, 0.174, 0, 0, 0.985, 0.3, 1, -0.174, 0, 0, 0.985, 0.4, 1, 0.109, 0, 0, 0.994, 0.5, 1, -0.087, 0, 0, 0.996, 0.55, 1, 0.065, 0, 0, 0.998, 0.65, 1, -0.044, 0, 0, 0.999, 0.7, 1, 0.026, 0, 0, 1, 0.75, 1, -0.017, 0, 0, 1, 0.8, 1, 0.009, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_357li"]
+_data = {
+"shake": SubResource("Animation_iww8s")
+}
+
+[node name="Pumpkin" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, 0, 0, 0)
+script = ExtResource("1_6t7oy")
+
+[node name="Pumpkin1" parent="." instance=ExtResource("2_y2g02")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Pumpkin13" parent="." instance=ExtResource("3_27ei0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+visible = false
+
+[node name="Pumpkin23" parent="." instance=ExtResource("4_i8bgn")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_357li")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

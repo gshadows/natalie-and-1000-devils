@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcqddtfleskpk"]
+
+[ext_resource type="PackedScene" uid="uid://dswg7y4t231qp" path="res://models/pumpkin1.glb" id="1_xch5b"]
+
+[node name="Pumpkin1" instance=ExtResource("1_xch5b")]

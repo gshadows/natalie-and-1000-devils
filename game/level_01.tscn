@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnkus4ajhmk00"]
+[gd_scene load_steps=8 format=3 uid="uid://cnkus4ajhmk00"]
 
 [ext_resource type="PackedScene" uid="uid://cg3p8nmbiam78" path="res://models/room-1.glb" id="1_7rcfw"]
+[ext_resource type="Script" path="res://game/level.gd" id="1_xxclm"]
 [ext_resource type="PackedScene" uid="uid://s0iwctpb8jrw" path="res://models/stove.glb" id="2_gy0k6"]
 [ext_resource type="PackedScene" uid="uid://bwel2dcdja5yt" path="res://models/table.glb" id="3_2h2r5"]
 [ext_resource type="PackedScene" uid="uid://0f7ly3hyiqd" path="res://models/tabouret.glb" id="4_21vo0"]
@@ -11,8 +12,12 @@ ambient_light_source = 2
 ambient_light_color = Color(0.00784314, 0.101961, 0.129412, 1)
 reflected_light_source = 1
 
-[node name="Level-01" type="Node3D"]
+[node name="Level-01" type="Node3D" node_paths=PackedStringArray("shelf_left", "shelf_right", "markers")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.761632)
+script = ExtResource("1_xxclm")
+shelf_left = NodePath("Markers/JarLeft")
+shelf_right = NodePath("Markers/JarRight")
+markers = [NodePath("Markers/Pump1"), NodePath("Markers/Pump2"), NodePath("Markers/Pump3"), NodePath("Markers/Pump4"), NodePath("Markers/Pump5"), NodePath("Markers/Pump6")]
 
 [node name="Statics" type="Node3D" parent="."]
 metadata/_edit_group_ = true
@@ -83,3 +88,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.948244, -0.02127, 0.359028
 
 [node name="Pump6" type="Marker3D" parent="Markers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.705706, -0.02127, 0.359028)
+
+[node name="Pumpkins" type="Node" parent="."]
