@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cnkus4ajhmk00"]
+[gd_scene load_steps=10 format=3 uid="uid://cnkus4ajhmk00"]
 
 [ext_resource type="PackedScene" uid="uid://cg3p8nmbiam78" path="res://models/room-1.glb" id="1_7rcfw"]
 [ext_resource type="Script" path="res://game/level.gd" id="1_xxclm"]
@@ -12,6 +12,23 @@
 ambient_light_source = 2
 ambient_light_color = Color(0.00784314, 0.101961, 0.129412, 1)
 reflected_light_source = 1
+
+[sub_resource type="GDScript" id="GDScript_luxmw"]
+script/source = "extends OmniLight3D
+
+const MAX_ENERGY := 1.5
+const MIN_TIME := 0.1
+const MAX_TIME := 0.5
+
+func _ready() -> void:
+	var timer = Timer.new()
+	timer.one_shot = true
+	add_child(timer)
+	while true:
+		timer.start(randf_range(MIN_TIME, MAX_TIME))
+		await timer.timeout
+		light_energy = randf() * MAX_ENERGY
+"
 
 [node name="Level-01" type="Node3D" node_paths=PackedStringArray("shelf_left", "shelf_right")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.761632)
@@ -57,6 +74,7 @@ light_energy = 0.05
 light_size = 0.28
 shadow_enabled = true
 shadow_blur = 0.0
+script = SubResource("GDScript_luxmw")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51013, 3.39367)
@@ -83,7 +101,7 @@ transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838
 transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, 2.24155, 1.0057, -0.525545)
 
 [node name="Pumpkin4" parent="Pumpkins" instance=ExtResource("7_dqhku")]
-transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, 3.71598, -0.02127, 0.359028)
+transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, 3.51968, -0.02127, 0.359028)
 
 [node name="Pumpkin5" parent="Pumpkins" instance=ExtResource("7_dqhku")]
 transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, -0.948244, -0.02127, 0.359028)

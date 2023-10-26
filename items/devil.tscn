@@ -1,18 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3vj7i1dd5uyk"]
+[gd_scene load_steps=7 format=3 uid="uid://b3vj7i1dd5uyk"]
 
 [ext_resource type="PackedScene" uid="uid://bg28fqf8y65fp" path="res://models/devil.glb" id="1_cj1p6"]
 [ext_resource type="Script" path="res://items/devil.gd" id="2_hj5l0"]
-
-[sub_resource type="Animation" id="Animation_j31vy"]
-resource_name = "sharoebica"
-length = 2.0
-tracks/0/type = "scale_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Devil")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.5, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1.5, 1, -1, 1, 1, 2, 1, 1, 1, 1)
+[ext_resource type="PackedScene" uid="uid://jxf7q2ecq3dj" path="res://items/jar.tscn" id="3_em54j"]
 
 [sub_resource type="Animation" id="Animation_62a4j"]
 resource_name = "jumping"
@@ -26,6 +16,17 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.15, 1, 0, 0.0700581, 0, 0.3, 1, 0, 0, 0, 0.45, 1, 0, 0.0700581, 0, 0.6, 1, 0, 0, 0, 0.75, 1, 0, 0.0700581, 0, 0.9, 1, 0, 0, 0)
 
+[sub_resource type="Animation" id="Animation_j31vy"]
+resource_name = "sharoebica"
+length = 2.0
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Devil")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.5, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1.5, 1, -1, 1, 1, 2, 1, 1, 1, 1)
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vidx6"]
 _data = {
 "jumping": SubResource("Animation_62a4j"),
@@ -35,11 +36,16 @@ _data = {
 [node name="Devil" instance=ExtResource("1_cj1p6")]
 script = ExtResource("2_hj5l0")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+[node name="Devil" parent="." index="0"]
+transform = Transform3D(0.75, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Jar" parent="." index="1" instance=ExtResource("3_em54j")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_vidx6")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="3"]
 
-[node name="Timer" type="Timer" parent="." index="3"]
+[node name="Timer" type="Timer" parent="." index="4"]

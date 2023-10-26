@@ -45,6 +45,7 @@ func _do_bite() -> void:
 	_size_left -= 1
 	_play(_snd_bite)
 	if _size_left <= 0:
+		get_parent().remove_child(self)
 		finished.emit()
 		queue_free()
 		return
