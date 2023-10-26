@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cnkus4ajhmk00"]
+[gd_scene load_steps=9 format=3 uid="uid://cnkus4ajhmk00"]
 
 [ext_resource type="PackedScene" uid="uid://cg3p8nmbiam78" path="res://models/room-1.glb" id="1_7rcfw"]
 [ext_resource type="Script" path="res://game/level.gd" id="1_xxclm"]
@@ -6,18 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://bwel2dcdja5yt" path="res://models/table.glb" id="3_2h2r5"]
 [ext_resource type="PackedScene" uid="uid://0f7ly3hyiqd" path="res://models/tabouret.glb" id="4_21vo0"]
 [ext_resource type="PackedScene" uid="uid://dr3k20qm3wclg" path="res://models/shelf_for_jars.glb" id="5_3j0f8"]
+[ext_resource type="PackedScene" uid="uid://d07fw7i4rldnv" path="res://items/pumpkin.tscn" id="7_dqhku"]
 
 [sub_resource type="Environment" id="Environment_cmo6g"]
 ambient_light_source = 2
 ambient_light_color = Color(0.00784314, 0.101961, 0.129412, 1)
 reflected_light_source = 1
 
-[node name="Level-01" type="Node3D" node_paths=PackedStringArray("shelf_left", "shelf_right", "markers")]
+[node name="Level-01" type="Node3D" node_paths=PackedStringArray("shelf_left", "shelf_right")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.761632)
 script = ExtResource("1_xxclm")
 shelf_left = NodePath("Markers/JarLeft")
 shelf_right = NodePath("Markers/JarRight")
-markers = [NodePath("Markers/Pump1"), NodePath("Markers/Pump2"), NodePath("Markers/Pump3"), NodePath("Markers/Pump4"), NodePath("Markers/Pump5"), NodePath("Markers/Pump6")]
 
 [node name="Statics" type="Node3D" parent="."]
 metadata/_edit_group_ = true
@@ -71,22 +71,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2.34, -1.78)
 [node name="JarRight" type="Marker3D" parent="Markers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, 2.34, -1.78)
 
-[node name="Pump1" type="Marker3D" parent="Markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.547, 0.895278, 0)
-
-[node name="Pump2" type="Marker3D" parent="Markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.22835, 0.393894, -0.410858)
-
-[node name="Pump3" type="Marker3D" parent="Markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.24155, 1.0057, -0.525545)
-
-[node name="Pump4" type="Marker3D" parent="Markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.71598, -0.02127, 0.359028)
-
-[node name="Pump5" type="Marker3D" parent="Markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.948244, -0.02127, 0.359028)
-
-[node name="Pump6" type="Marker3D" parent="Markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.705706, -0.02127, 0.359028)
-
 [node name="Pumpkins" type="Node" parent="."]
+
+[node name="Pumpkin1" parent="Pumpkins" instance=ExtResource("7_dqhku")]
+transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, -3.547, 0.895278, 0)
+
+[node name="Pumpkin2" parent="Pumpkins" instance=ExtResource("7_dqhku")]
+transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, -2.22835, 0.393894, -0.410858)
+
+[node name="Pumpkin3" parent="Pumpkins" instance=ExtResource("7_dqhku")]
+transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, 2.24155, 1.0057, -0.525545)
+
+[node name="Pumpkin4" parent="Pumpkins" instance=ExtResource("7_dqhku")]
+transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, 3.71598, -0.02127, 0.359028)
+
+[node name="Pumpkin5" parent="Pumpkins" instance=ExtResource("7_dqhku")]
+transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, -0.948244, -0.02127, 0.359028)
+
+[node name="Pumpkin6" parent="Pumpkins" instance=ExtResource("7_dqhku")]
+transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, 0.705706, -0.02127, 0.359028)

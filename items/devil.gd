@@ -1,3 +1,4 @@
+class_name Devil
 extends Node3D
 
 signal jarred
