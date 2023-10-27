@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct8u7rdddrq8j"]
+
+[ext_resource type="PackedScene" uid="uid://cvd1ogfhaclk0" path="res://models/natalie.glb" id="1_owgmo"]
+[ext_resource type="PackedScene" uid="uid://jxf7q2ecq3dj" path="res://items/jar.tscn" id="2_82tjr"]
+[ext_resource type="Script" path="res://items/natalie.gd" id="2_k3xno"]
+
+[node name="Natalie" instance=ExtResource("1_owgmo")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("2_k3xno")
+
+[node name="Skeleton3D" parent="Natalie-RIG_deform" index="0"]
+bones/0/position = Vector3(9.15371e-10, 0.804694, -0.011284)
+bones/0/rotation = Quaternion(0.206834, 2.33456e-07, 4.83937e-08, 0.978376)
+bones/1/rotation = Quaternion(-0.119952, -1.18684e-07, -4.54427e-08, 0.99278)
+bones/6/rotation = Quaternion(0.0507509, -1.19334e-07, 5.48283e-09, 0.998711)
+bones/32/rotation = Quaternion(-0.0439822, -0.120791, -0.856374, 0.500098)
+bones/58/rotation = Quaternion(-0.0439823, 0.120791, 0.856374, 0.500098)
+bones/60/rotation = Quaternion(-0.626925, -0.520939, 0.535685, 0.220519)
+bones/62/rotation = Quaternion(0.143055, -0.0012873, 0.0145284, 0.989607)
+bones/64/rotation = Quaternion(-0.614513, -0.128673, -0.107333, 0.770906)
+bones/67/rotation = Quaternion(-0.62539, 0.499381, -0.553653, 0.23016)
+bones/69/rotation = Quaternion(0.123432, 0.000535185, -0.00604087, 0.992334)
+bones/71/rotation = Quaternion(-0.632224, 0.125388, 0.111822, 0.756351)
+
+[node name="AnimationPlayer" parent="." index="1"]
+speed_scale = 2.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
+
+[node name="Jar" parent="." index="3" instance=ExtResource("2_82tjr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.938117, 0.315422)

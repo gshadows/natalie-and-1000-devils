@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnkus4ajhmk00"]
+[gd_scene load_steps=11 format=3 uid="uid://cnkus4ajhmk00"]
 
 [ext_resource type="PackedScene" uid="uid://cg3p8nmbiam78" path="res://models/room-1.glb" id="1_7rcfw"]
 [ext_resource type="Script" path="res://game/level.gd" id="1_xxclm"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://0f7ly3hyiqd" path="res://models/tabouret.glb" id="4_21vo0"]
 [ext_resource type="PackedScene" uid="uid://dr3k20qm3wclg" path="res://models/shelf_for_jars.glb" id="5_3j0f8"]
 [ext_resource type="PackedScene" uid="uid://d07fw7i4rldnv" path="res://items/pumpkin.tscn" id="7_dqhku"]
+[ext_resource type="PackedScene" uid="uid://ct8u7rdddrq8j" path="res://items/natalie.tscn" id="8_wlwx1"]
 
 [sub_resource type="Environment" id="Environment_cmo6g"]
 ambient_light_source = 2
@@ -30,11 +31,13 @@ func _ready() -> void:
 		light_energy = randf() * MAX_ENERGY
 "
 
-[node name="Level-01" type="Node3D" node_paths=PackedStringArray("shelf_left", "shelf_right")]
+[node name="Level-01" type="Node3D" node_paths=PackedStringArray("shelf_left", "shelf_right", "x_limit_left", "x_limit_right")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.761632)
 script = ExtResource("1_xxclm")
 shelf_left = NodePath("Markers/JarLeft")
 shelf_right = NodePath("Markers/JarRight")
+x_limit_left = NodePath("Markers/BorderLeft")
+x_limit_right = NodePath("Markers/BorderRight")
 
 [node name="Statics" type="Node3D" parent="."]
 metadata/_edit_group_ = true
@@ -74,6 +77,7 @@ light_energy = 0.05
 light_size = 0.28
 shadow_enabled = true
 shadow_blur = 0.0
+omni_range = 4.0
 script = SubResource("GDScript_luxmw")
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -89,7 +93,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2.34, -1.78)
 [node name="JarRight" type="Marker3D" parent="Markers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, 2.34, -1.78)
 
-[node name="Pumpkins" type="Node" parent="."]
+[node name="BorderLeft" type="Marker3D" parent="Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 0, 0.5)
+
+[node name="BorderRight" type="Marker3D" parent="Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.45, 0, 0.5)
+
+[node name="Pumpkins" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.75)
 
 [node name="Pumpkin1" parent="Pumpkins" instance=ExtResource("7_dqhku")]
 transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, -3.547, 0.895278, 0)
@@ -108,3 +119,6 @@ transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838
 
 [node name="Pumpkin6" parent="Pumpkins" instance=ExtResource("7_dqhku")]
 transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, 0.705706, -0.02127, 0.359028)
+
+[node name="Natalie" parent="." instance=ExtResource("8_wlwx1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.57)
