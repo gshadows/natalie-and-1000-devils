@@ -88,10 +88,10 @@ fov = 90.0
 [node name="Markers" type="Node" parent="."]
 
 [node name="JarLeft" type="Marker3D" parent="Markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2.34, -1.78)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2.34, -1)
 
 [node name="JarRight" type="Marker3D" parent="Markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, 2.34, -1.78)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, 2.34, -1)
 
 [node name="BorderLeft" type="Marker3D" parent="Markers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 0, 0.5)
@@ -122,3 +122,5 @@ transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838
 
 [node name="Natalie" parent="." instance=ExtResource("8_wlwx1")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.57)
+
+[connection signal="catching" from="Natalie" to="." method="_on_natalie_catching"]

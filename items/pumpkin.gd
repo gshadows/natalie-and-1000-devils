@@ -1,8 +1,10 @@
 class_name Pumpkin
 extends Node3D
 
-const MIN_PERIOD_MS = 1000
-const MAX_PERIOD_MS = 2000
+const MIN_PERIOD_MS := 1500
+const MAX_PERIOD_MS := 3000
+const MIN_HAUNT_DELAY_SEC := 0.5
+const MAX_HAUNT_DELAY_SEC := 1.5
 
 signal finished
 
@@ -25,6 +27,7 @@ func _play(stream: AudioStream):
 
 func activate_devil() -> void:
 	_period_ms = randi_range(MIN_PERIOD_MS, MAX_PERIOD_MS)
+	await get_tree().create_timer(randf_range(MIN_HAUNT_DELAY_SEC, MAX_HAUNT_DELAY_SEC)).timeout
 	_play(_snd_shake)
 	_devil_wait()
 	_active = true
@@ -45,9 +48,7 @@ func _do_bite() -> void:
 	_size_left -= 1
 	_play(_snd_bite)
 	if _size_left <= 0:
-		get_parent().remove_child(self)
-		finished.emit()
-		queue_free()
+		_on_finished()
 		return
 	match _size_left:
 		2:
@@ -60,3 +61,13 @@ func _do_bite() -> void:
 			$Pumpkin13.visible = false
 	_devil_wait()
 	return
+
+
+func _on_finished() -> void:
+	get_parent().remove_child(self)
+	finished.emit()
+	queue_free()
+
+
+func on_catch() -> void:
+	_active = false
