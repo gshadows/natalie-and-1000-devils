@@ -3,7 +3,7 @@ extends Node3D
 signal win
 signal loose
 
-const CATCH_DISTANCE := 0.5
+const CATCH_DISTANCE := 0.2
 
 @export_category("Scene Configuration")
 # Markers below will be deleted after _ready()
@@ -85,13 +85,14 @@ func _next_devil() -> void:
 	if count < concurrent_devils:
 		return # No more pumpkins to haunt
 	var pumpkin = _pumpkins.get_child(randi() % count) as Pumpkin
+	print("Activate devil in ", pumpkin)
 	pumpkin.activate_devil()
 	pumpkin.finished.connect(_pumpkin_finished)
 
 
 func _on_natalie_catching(x: float) -> void:
 	for pumpkin in _pumpkins.get_children():
-		if absf(x - pumpkin.global_position.x) <= CATCH_DISTANCE:
+		if pumpkin.active and absf(x - pumpkin.global_position.x) <= CATCH_DISTANCE:
 			_caught(pumpkin)
 			return
 	# Missed
@@ -99,6 +100,7 @@ func _on_natalie_catching(x: float) -> void:
 
 func _caught(pumpkin: Pumpkin) -> void:
 	# Notify pumpkin that devil was caught.
+	print("Caught ", pumpkin)
 	pumpkin.on_catch()
 	# Move all jars to make place for a new one.
 	var delta_pos = (_jar_x2 - _jar_x1) / (_shelf.get_child_count() + 2)

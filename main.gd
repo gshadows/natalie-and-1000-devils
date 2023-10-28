@@ -7,6 +7,9 @@ var _game: Node
 
 
 func _ready():
+	if OS.is_debug_build() and (DisplayServer.get_screen_count() > 1):
+		DisplayServer.window_set_current_screen(DisplayServer.window_get_current_screen() ^ 1)
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 	get_tree().paused = true
 	Game.started.connect(_on_start)
 	Game.continued.connect(_on_continue)

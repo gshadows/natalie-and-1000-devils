@@ -14,7 +14,7 @@ signal finished
 @onready var _anim = $AnimationPlayer
 @onready var _sfx = $AudioStreamPlayer
 
-var _active := false
+var active := false
 var _period_ms := 0
 var _next_bite_time: int
 var _size_left = 3
@@ -30,7 +30,7 @@ func activate_devil() -> void:
 	await get_tree().create_timer(randf_range(MIN_HAUNT_DELAY_SEC, MAX_HAUNT_DELAY_SEC)).timeout
 	_play(_snd_shake)
 	_devil_wait()
-	_active = true
+	active = true
 
 
 func _devil_wait() -> void:
@@ -39,7 +39,7 @@ func _devil_wait() -> void:
 
 
 func _process(_delta: float) -> void:
-	if not _active: return
+	if not active: return
 	if Time.get_ticks_msec() <= _next_bite_time: return
 	_do_bite()
 
@@ -70,4 +70,4 @@ func _on_finished() -> void:
 
 
 func on_catch() -> void:
-	_active = false
+	active = false
