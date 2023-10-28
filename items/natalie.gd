@@ -20,6 +20,7 @@ var _x_max: float
 var _base_jar_y: float
 var _base_rotation: float
 var _jar_pos: int # -1, 0, +1
+var _is_catching := false
 
 var _spine_bone_idx: int
 var _larm_bone_idx: int
@@ -51,8 +52,8 @@ func setup(xmin: float, xmax: float) -> void:
 
 func _process(delta: float) -> void:
 	_movement(delta, Input.get_axis("go_left", "go_right"))
-	var catch_pos := _catch(delta)
-	_jar_move(delta, catch_pos)
+	var catch_changed := _catch(delta)
+	_jar_move(delta, catch_changed)
 
 
 func _movement(delta: float, amount: float) -> void:
@@ -61,24 +62,34 @@ func _movement(delta: float, amount: float) -> void:
 		global_position.x = clampf(global_position.x + amount, _x_min, _x_max)
 		global_rotation_degrees.y = signf(amount) * 90.0
 		_anim.play("run")
+		if not _sfx.playing: _play(_snd_step)
 	else:
 		_anim.stop()
 
 
-func _jar_move(_delta: float, catch_pos: int) -> void:
+func _jar_move(_delta: float, catch_changed: bool) -> void:
+	# Jar movement direction.
 	var dir := 0
 	if Input.is_action_just_pressed("jar_up"):
 		dir = +1
 	elif Input.is_action_just_pressed("jar_down"):
 		dir = -1
+	
+	# Additional offest for catching.
+	var catch_pos := 0 if not catch_changed else -1 if _is_catching else +1
+	
+	# Decide final body rotation and jar position.
 	if dir != 0:
-		_jar_pos = clampi(_jar_pos + dir, -1, +1)
-		_jar.position.y = _base_jar_y + _jar_pos * JAR_Y_MOVEMENT
-		var radians := (_jar_pos + catch_pos) * JAR_HANDS_ROTATION
-		_rotate_body(radians)
-		_play(_snd_step)
-	elif (catch_pos != 0):
-		_rotate_body(catch_pos * JAR_HANDS_ROTATION)
+		_jar_pos = clampi(_jar_pos + dir, -1, +1) + catch_pos
+	elif (catch_changed):
+		_jar_pos += catch_pos
+	else:
+		return
+
+	# Apply body rotation and jar position.
+	_rotate_body(_jar_pos * JAR_HANDS_ROTATION)
+	_jar.position.y = _base_jar_y + _jar_pos * JAR_Y_MOVEMENT
+
 
 func _rotate_body(radians: float) -> void:
 	_rotate_bone(radians, _spine_pose, _spine_bone_idx)
@@ -91,13 +102,16 @@ func _rotate_bone(radians: float, start_pose: Transform3D, bone_idx: int) -> voi
 	_skel.set_bone_global_pose_override(bone_idx, pose, 1.0, true)
 
 
-func _catch(_delta: float) -> int:
+# Returns true on catching state change.
+func _catch(_delta: float) -> bool:
 	if Input.is_action_just_pressed("catch"):
 		var jar_x: float = _jar.global_position.x
 		catching.emit(jar_x)
 		_play(_snd_catch)
-		return -1
+		_is_catching = true
+		return true
 	elif Input.is_action_just_released("catch"):
-		return +1
+		_is_catching = false
+		return true
 	else:
-		return 0
+		return false
