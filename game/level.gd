@@ -79,6 +79,7 @@ func _recreate_pumpkins() -> void:
 		var pumpkin = _pumpkin_scene.instantiate()
 		pumpkin.global_transform = trans
 		_pumpkins.add_child(pumpkin)
+	_init_devils()
 
 func _on_idclip() -> void:
 	var tween = create_tween()
@@ -103,10 +104,15 @@ func _next_devil() -> void:
 		return
 	if count < concurrent_devils:
 		return # No more pumpkins to haunt
-	var pumpkin = _pumpkins.get_child(randi() % count) as Pumpkin
+	var pumpkin: Pumpkin
+	while true:
+		pumpkin = _pumpkins.get_child(randi() % count) as Pumpkin
+		if not pumpkin.active: break
 	print("Activate devil in ", pumpkin)
 	pumpkin.activate_devil()
-	pumpkin.finished.connect(_pumpkin_finished)
+	var res = pumpkin.finished.connect(_pumpkin_finished)
+	if res == ERR_INVALID_PARAMETER:
+		pass
 
 
 func _on_natalie_catching(x: float) -> void:
