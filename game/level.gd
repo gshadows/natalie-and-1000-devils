@@ -47,8 +47,16 @@ func _ready() -> void:
 	# Clear unneeded objects.
 	$Markers.queue_free()
 	
-	# Prepare pumpkins.
+	# Prepare other things.
 	_init_pumpkins()
+	_init_devils()
+	Game.cheat_idkfa.connect(_recreate_pumpkins)
+	Game.cheat_idclip.connect(_on_idclip)
+	Game.cheat_winwin.connect(_win)
+	Game.cheat_looser.connect(_loose)
+	Game.cheat_flyfly.connect(_on_flyfly)
+
+func _init_devils() -> void:
 	await get_tree().create_timer(start_delay_sec).timeout
 	for i in concurrent_devils:
 		_next_devil() # Activate random devil after random delay.
@@ -72,6 +80,14 @@ func _recreate_pumpkins() -> void:
 		pumpkin.global_transform = trans
 		_pumpkins.add_child(pumpkin)
 
+func _on_idclip() -> void:
+	var tween = create_tween()
+	tween.tween_property(_natalie, "position:y", -10, 1.5).as_relative().set_delay(0.5)
+	tween.tween_callback(_loose)
+
+func _on_flyfly() -> void:
+	$Camera3D.
+
 
 func _pumpkin_finished() -> void:
 	_next_devil()
@@ -80,7 +96,7 @@ func _pumpkin_finished() -> void:
 func _next_devil() -> void:
 	var count = _pumpkins.get_child_count()
 	if count == 0:
-		loose.emit()
+		_loose()
 		return
 	if count < concurrent_devils:
 		return # No more pumpkins to haunt
@@ -116,6 +132,14 @@ func _caught(pumpkin: Pumpkin) -> void:
 	await devil.jarred # Wait until devil scare animation finished.
 	_cought += 1
 	if _cought >= devils_count:
-		win.emit()
+		_win()
 	else:
 		_next_devil()
+
+
+func _loose() -> void:
+	loose.emit()
+
+
+func _win() -> void:
+	win.emit()

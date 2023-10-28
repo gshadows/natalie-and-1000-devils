@@ -45,6 +45,10 @@ func _process(_delta: float) -> void:
 
 
 func _do_bite() -> void:
+	if Game.is_god_mode:
+		_play(_snd_bite)
+		_devil_wait()
+		return
 	_size_left -= 1
 	_play(_snd_bite)
 	if _size_left <= 0:

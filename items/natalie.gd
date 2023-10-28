@@ -115,3 +115,15 @@ func _catch(_delta: float) -> bool:
 		return true
 	else:
 		return false
+
+
+func _unhandled_input(event) -> void:
+	if Game.is_nsfw and (event is InputEventKey) and event.pressed and not event.echo:
+		if event.keycode == KEY_1:
+			var node: Node3D = _skel.get_node("Natalie-Dress")
+			node.visible = not node.visible
+			set_process_unhandled_input(true)
+		elif event.keycode == KEY_2:
+			var node: Node3D = _skel.get_node("Natalie-Skirt")
+			node.visible = not node.visible
+			set_process_unhandled_input(true)

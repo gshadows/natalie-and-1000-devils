@@ -38,6 +38,9 @@ shelf_left = NodePath("Markers/JarLeft")
 shelf_right = NodePath("Markers/JarRight")
 x_limit_left = NodePath("Markers/BorderLeft")
 x_limit_right = NodePath("Markers/BorderRight")
+devils_count = null
+concurrent_devils = null
+start_delay_sec = null
 
 [node name="Statics" type="Node3D" parent="."]
 metadata/_edit_group_ = true
