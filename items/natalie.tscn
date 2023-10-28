@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ct8u7rdddrq8j"]
 
-[ext_resource type="PackedScene" uid="uid://cvd1ogfhaclk0" path="res://models/natalie.glb" id="1_owgmo"]
+[ext_resource type="PackedScene" uid="uid://byuogsn3twa01" path="res://models/natalie.glb" id="1_owgmo"]
 [ext_resource type="PackedScene" uid="uid://jxf7q2ecq3dj" path="res://items/jar.tscn" id="2_82tjr"]
 [ext_resource type="Script" path="res://items/natalie.gd" id="2_k3xno"]
 
