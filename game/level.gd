@@ -86,7 +86,10 @@ func _on_idclip() -> void:
 	tween.tween_callback(_loose)
 
 func _on_flyfly() -> void:
-	$Camera3D.
+	$Camera3D.visible = not Game.is_flyfly
+	$Camera3D.current = not Game.is_flyfly
+	$Natalie/FlyFlyUD.visible = Game.is_flyfly
+	$Natalie/FlyFlyUD/FlyFlyLR/CameraFlyFly3D.current = Game.is_flyfly
 
 
 func _pumpkin_finished() -> void:

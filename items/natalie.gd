@@ -122,8 +122,8 @@ func _unhandled_input(event) -> void:
 		if event.keycode == KEY_1:
 			var node: Node3D = _skel.get_node("Natalie-Dress")
 			node.visible = not node.visible
-			set_process_unhandled_input(true)
+			get_viewport().set_input_as_handled()
 		elif event.keycode == KEY_2:
 			var node: Node3D = _skel.get_node("Natalie-Skirt")
 			node.visible = not node.visible
-			set_process_unhandled_input(true)
+			get_viewport().set_input_as_handled()

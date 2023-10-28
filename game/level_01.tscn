@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cnkus4ajhmk00"]
+[gd_scene load_steps=12 format=3 uid="uid://cnkus4ajhmk00"]
 
 [ext_resource type="PackedScene" uid="uid://cg3p8nmbiam78" path="res://models/room-1.glb" id="1_7rcfw"]
 [ext_resource type="Script" path="res://game/level.gd" id="1_xxclm"]
@@ -31,6 +31,44 @@ func _ready() -> void:
 		light_energy = randf() * MAX_ENERGY
 "
 
+[sub_resource type="GDScript" id="GDScript_74jga"]
+script/source = "extends Node3D
+
+const ROT_SPEED := 2.5
+const ZOOM_SPEED := 0.1
+const MIN_DIST := 0.5
+const MAX_DIST := 10.0
+const MIN_Y := -1.0
+const MAX_Y := 10.0
+const MOUSE_SENS := 0.01
+
+@onready var _cam := $CameraFlyFly3D
+@onready var _dist := (_cam as Node3D).position.length()
+
+func _unhandled_input(event):
+	if not Game.is_flyfly or not Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT): return
+	if event is InputEventMouseMotion:
+		rotate_y(-event.relative.x *MOUSE_SENS)
+		var par = get_parent()
+		par.position.y = clampf(par.position.y + event.relative.y * MOUSE_SENS, MIN_Y, MAX_Y)
+		#par.rotate_z(-event.relative.y * MOUSE_SENS)
+		#par.rotation_degrees.z = clampf(par.rotation_degrees.z, -89, +89)
+		get_viewport().set_input_as_handled()
+		return
+	if (event is InputEventMouseButton):
+		var zoom: float
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			zoom = -ZOOM_SPEED
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			zoom = +ZOOM_SPEED
+		else:
+			return
+		_dist = clampf(_dist + zoom, MIN_DIST, MAX_DIST)
+		_cam.position = _cam.position.normalized() * _dist
+		get_viewport().set_input_as_handled()
+		return
+"
+
 [node name="Level-01" type="Node3D" node_paths=PackedStringArray("shelf_left", "shelf_right", "x_limit_left", "x_limit_right")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.761632)
 script = ExtResource("1_xxclm")
@@ -38,9 +76,6 @@ shelf_left = NodePath("Markers/JarLeft")
 shelf_right = NodePath("Markers/JarRight")
 x_limit_left = NodePath("Markers/BorderLeft")
 x_limit_right = NodePath("Markers/BorderRight")
-devils_count = null
-concurrent_devils = null
-start_delay_sec = null
 
 [node name="Statics" type="Node3D" parent="."]
 metadata/_edit_group_ = true
@@ -125,5 +160,16 @@ transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838
 
 [node name="Natalie" parent="." instance=ExtResource("8_wlwx1")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.57)
+
+[node name="FlyFlyUD" type="Node3D" parent="Natalie"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.182162, 0)
+
+[node name="FlyFlyLR" type="Node3D" parent="Natalie/FlyFlyUD"]
+script = SubResource("GDScript_74jga")
+
+[node name="CameraFlyFly3D" type="Camera3D" parent="Natalie/FlyFlyUD/FlyFlyLR"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.96367, 1.32762, -1.73258e-07)
+keep_aspect = 0
+fov = 90.0
 
 [connection signal="catching" from="Natalie" to="." method="_on_natalie_catching"]
