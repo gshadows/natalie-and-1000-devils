@@ -12,7 +12,8 @@ const JAR_HANDS_ROTATION := PI / 6 # 30 deg
 @onready var _sfx := $AudioStreamPlayer
 @onready var _jar := $Jar
 @onready var _skel := $"Natalie-RIG_deform/Skeleton3D"
-@onready var _snd_step = preload("res://audio/MenuClick-fs-448080.wav")
+@onready var _snd_step1 = preload("res://audio/WoodStep1-502511.wav")
+@onready var _snd_step2 = preload("res://audio/WoodStep2-502504.wav")
 @onready var _snd_catch = preload("res://audio/MenuHover-fs-420615.wav")
 
 var _x_min: float
@@ -64,7 +65,8 @@ func _movement(delta: float, amount: float) -> void:
 		global_position.x = clampf(global_position.x + amount, _x_min, _x_max)
 		global_rotation_degrees.y = signf(amount) * 90.0
 		_anim.play("run")
-		if not _sfx.playing: _play(_snd_step)
+		if not _sfx.playing:
+			_play(_snd_step1 if (randi() % 100 < 50) else _snd_step2)
 	else:
 		_anim.stop()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ch0ch03hfvsb7"]
+[gd_scene load_steps=11 format=3 uid="uid://ch0ch03hfvsb7"]
 
 [ext_resource type="Texture2D" uid="uid://dyli44xe6mh45" path="res://sprites/menu_bg.png" id="1_yy21g"]
 [ext_resource type="Script" path="res://menu/end_level.gd" id="2_syyde"]
@@ -7,6 +7,7 @@
 [ext_resource type="LabelSettings" uid="uid://qr7ji3kpeo3g" path="res://menu/label_settings_score.tres" id="5_bmxsb"]
 [ext_resource type="Texture2D" uid="uid://dj4rug5pe5bx" path="res://sprites/theend.png" id="6_r0g6g"]
 [ext_resource type="Texture2D" uid="uid://c48qigr6mi762" path="res://sprites/next.png" id="7_i1how"]
+[ext_resource type="AudioStream" uid="uid://14kn1pfrt84m" path="res://audio/MusicLoose-371205.mp3" id="9_dqin8"]
 [ext_resource type="Texture2D" uid="uid://i1a1bawh63oh" path="res://sprites/cheater.png" id="9_r0nh2"]
 [ext_resource type="AudioStream" uid="uid://dapuwxsk7lcy2" path="res://audio/music_zapsplat_aiming_high.mp3" id="10_0wimg"]
 
@@ -298,7 +299,7 @@ stream = ExtResource("10_0wimg")
 bus = &"Music"
 
 [node name="MusicLoose" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_0wimg")
+stream = ExtResource("9_dqin8")
 bus = &"Music"
 
 [node name="CheaterStamp" type="TextureRect" parent="."]

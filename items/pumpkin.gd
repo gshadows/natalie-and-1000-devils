@@ -8,8 +8,8 @@ const MAX_HAUNT_DELAY_SEC := 1.5
 
 signal finished
 
-@onready var _snd_shake = preload("res://audio/MenuClick-fs-448080.wav")
-@onready var _snd_bite = preload("res://audio/MenuHover-fs-420615.wav")
+@onready var _snd_shake = preload("res://audio/Shake-56261.wav")
+@onready var _snd_bite = preload("res://audio/AppleBite-584290.ogg")
 
 @onready var _anim = $AnimationPlayer
 @onready var _sfx = $AudioStreamPlayer

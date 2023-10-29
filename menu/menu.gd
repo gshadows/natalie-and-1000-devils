@@ -59,6 +59,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if not get_tree().paused:
 			Game.pause()
 		elif Game.mode != Game.GAME_MODE.NONE:
+			_music.stop()
 			Game.start()
 		elif $InfoPanel.visible:
 			_on_button_thanks_pressed()

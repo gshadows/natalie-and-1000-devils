@@ -11,7 +11,9 @@ const MAX_TIME := 10.0
 @onready var _anim := $AnimationPlayer
 @onready var _timer := $Timer
 
-@onready var _snd_scare = preload("res://audio/MenuClick-fs-448080.wav")
+@onready var _snd_scare = preload("res://audio/Scared-223486.ogg")
+@onready var _snd_jump = preload("res://audio/EmptyBottle-416288.wav")
+@onready var _snd_shar = preload("res://audio/RetroJump-458258.wav")
 
 var _move_tween = null
 
@@ -22,8 +24,10 @@ func _play(stream: AudioStream):
 
 
 func on_revealed(target_pos: Vector3) -> void:
-	_play(_snd_scare)
+	_play(_snd_jump)
 	_anim.play("caught")
+	await _sfx.finished
+	_play(_snd_scare)
 	$Jar/AnimationPlayer.play("fade_in")
 	await _anim.animation_finished
 	jarred.emit()
@@ -44,7 +48,9 @@ func _on_jarred() -> void:
 		_timer.start(randf_range(MIN_TIME, MAX_TIME))
 		await _timer.timeout
 		if randi() % 100 < 50:
+			_play(_snd_jump)
 			_anim.play("jumping")
 		else:
+			_play(_snd_shar)
 			_anim.play("sharoebica")
 		await _anim.animation_finished
