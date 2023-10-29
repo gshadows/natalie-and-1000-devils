@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://ch0ch03hfvsb7"]
+[gd_scene load_steps=9 format=3 uid="uid://ch0ch03hfvsb7"]
 
 [ext_resource type="Texture2D" uid="uid://dyli44xe6mh45" path="res://sprites/menu_bg.png" id="1_yy21g"]
 [ext_resource type="Script" path="res://menu/end_level.gd" id="2_syyde"]
 [ext_resource type="Texture2D" uid="uid://cgfgwxe5eu75y" path="res://sprites/game_title.png" id="3_vgkm7"]
 [ext_resource type="Texture2D" uid="uid://cngkl0reimsa6" path="res://sprites/empty.png" id="4_pcibo"]
 [ext_resource type="LabelSettings" uid="uid://qr7ji3kpeo3g" path="res://menu/label_settings_score.tres" id="5_bmxsb"]
-[ext_resource type="Texture2D" uid="uid://c6f6f5umffbp8" path="res://sprites/start.png" id="5_w2dcy"]
+[ext_resource type="Texture2D" uid="uid://dj4rug5pe5bx" path="res://sprites/theend.png" id="6_r0g6g"]
+[ext_resource type="Texture2D" uid="uid://c48qigr6mi762" path="res://sprites/next.png" id="7_i1how"]
 [ext_resource type="AudioStream" uid="uid://dapuwxsk7lcy2" path="res://audio/music_zapsplat_aiming_high.mp3" id="10_0wimg"]
 
 [node name="EndLevel" type="TextureRect"]
@@ -277,7 +278,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 10
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("5_w2dcy")
+texture_normal = ExtResource("6_r0g6g")
 stretch_mode = 3
 
 [node name="ButtonNext" type="TextureButton" parent="MarginContainer/VBoxContainer"]
@@ -285,7 +286,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 10
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("5_w2dcy")
+texture_normal = ExtResource("7_i1how")
 stretch_mode = 3
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]

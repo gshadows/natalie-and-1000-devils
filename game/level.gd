@@ -7,6 +7,7 @@ signal loose
 const CATCH_DISTANCE_X := 0.5
 const CATCH_DISTANCE_Y := 0.2
 const PUMPKIN_CATCH_SHIFT := 0.3
+const END_GAME_TIMEOUT_SEC := 3.0
 
 @export_category("Scene Configuration")
 @export_file("*.tscn") var next_level = ""
@@ -61,6 +62,7 @@ func _ready() -> void:
 	Game.cheat_flyfly.connect(_on_flyfly)
 	
 	# Prepare scores
+	Game.score.clear_level_totals()
 	Game.level_devils = devils_count
 	Game.level_pumpkins = _pumpkins.get_child_count()
 
@@ -102,6 +104,7 @@ func _on_flyfly() -> void:
 
 
 func _pumpkin_finished() -> void:
+	Game.score.pumpkin_lost_level += 1
 	_next_devil()
 
 
@@ -155,6 +158,7 @@ func _caught(pumpkin: Pumpkin) -> void:
 	await devil.jarred # Wait until devil scare animation finished.
 	pumpkin.position.z += PUMPKIN_CATCH_SHIFT
 	_cought += 1
+	Game.score.devils_level += 1
 	if _cought >= devils_count:
 		_win()
 	else:
@@ -162,10 +166,10 @@ func _caught(pumpkin: Pumpkin) -> void:
 
 
 func _loose() -> void:
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(END_GAME_TIMEOUT_SEC).timeout
 	loose.emit()
 
 
 func _win() -> void:
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(END_GAME_TIMEOUT_SEC).timeout
 	win.emit()

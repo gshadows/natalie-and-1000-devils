@@ -20,6 +20,7 @@ func _ready():
 
 
 func _on_start() -> void:
+	Game.score = Score.new()
 	_menu.visible = false
 	_on_load_game(GAME_START_SCENE)
 
@@ -33,14 +34,14 @@ func _on_load_game(scene_path: String) -> void:
 
 func _level_loose() -> void:
 	_on_load_game(END_LEVEL_SCENE)
-	_game.closed.connect(_on_stop)
+	_game.closed.connect(Game.stop)
 	_game.setup(false)
 
 func _level_win() -> void:
 	var next_level = _game.next_level
 	_on_load_game(END_LEVEL_SCENE)
 	if not next_level or (next_level == ""):
-		_game.closed.connect(_on_stop)
+		_game.closed.connect(Game.stop)
 	else:
 		_game.closed.connect(_on_load_game.bind(next_level))
 	_game.setup(true)
