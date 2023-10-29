@@ -1,9 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://1a0sqergq7ku"]
+[gd_scene load_steps=18 format=3 uid="uid://1a0sqergq7ku"]
 
 [ext_resource type="Script" path="res://menu/menu.gd" id="1_mcigp"]
-[ext_resource type="Texture2D" uid="uid://skj80tfukfvy" path="res://icon.svg" id="2_ki6ff"]
+[ext_resource type="Texture2D" uid="uid://dyli44xe6mh45" path="res://sprites/menu_bg.png" id="1_umbum"]
+[ext_resource type="Texture2D" uid="uid://cgfgwxe5eu75y" path="res://sprites/game_title.png" id="2_8ts64"]
 [ext_resource type="Script" path="res://menu/click_link.gd" id="3_ittsc"]
 [ext_resource type="AudioStream" uid="uid://dapuwxsk7lcy2" path="res://audio/music_zapsplat_aiming_high.mp3" id="3_nwj2g"]
+[ext_resource type="Texture2D" uid="uid://df25u0crqmx01" path="res://sprites/stop.png" id="3_o3vnt"]
+[ext_resource type="Texture2D" uid="uid://c6f6f5umffbp8" path="res://sprites/start.png" id="4_k21xr"]
+[ext_resource type="Texture2D" uid="uid://d0kfyh3b1e1sd" path="res://sprites/settings.png" id="5_tr65t"]
+[ext_resource type="Texture2D" uid="uid://e7pts8xf72bn" path="res://sprites/info.png" id="6_rcgob"]
+[ext_resource type="Texture2D" uid="uid://dycxqh0i8pfw7" path="res://sprites/quit.png" id="7_mit28"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7qnn"]
 size = Vector2(360, 78)
@@ -189,20 +195,18 @@ _data = {
 "show_stop": SubResource("Animation_fsihg")
 }
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="TextureRect"]
 process_mode = 3
-layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 15.0
-offset_top = 17.0
-offset_right = 15.0
-offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+texture = ExtResource("1_umbum")
+expand_mode = 1
+stretch_mode = 1
 script = ExtResource("1_mcigp")
 
 [node name="TitleLogo" type="TextureRect" parent="."]
@@ -218,7 +222,7 @@ offset_right = 64.0
 offset_bottom = -151.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_ki6ff")
+texture = ExtResource("2_8ts64")
 
 [node name="StartStopHover" type="Area2D" parent="."]
 visibility_layer = 0
@@ -247,7 +251,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
 disabled = true
-texture_normal = ExtResource("2_ki6ff")
+texture_normal = ExtResource("3_o3vnt")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -266,7 +270,7 @@ offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("2_ki6ff")
+texture_normal = ExtResource("4_k21xr")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -285,7 +289,7 @@ offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("2_ki6ff")
+texture_normal = ExtResource("5_tr65t")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -304,7 +308,7 @@ offset_bottom = 110.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("2_ki6ff")
+texture_normal = ExtResource("6_rcgob")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -323,7 +327,7 @@ offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("2_ki6ff")
+texture_normal = ExtResource("7_mit28")
 ignore_texture_size = true
 stretch_mode = 0
 
