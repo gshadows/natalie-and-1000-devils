@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct8u7rdddrq8j"]
+[gd_scene load_steps=7 format=3 uid="uid://ct8u7rdddrq8j"]
 
 [ext_resource type="PackedScene" uid="uid://byuogsn3twa01" path="res://models/natalie.glb" id="1_owgmo"]
 [ext_resource type="PackedScene" uid="uid://jxf7q2ecq3dj" path="res://items/jar.tscn" id="2_82tjr"]
 [ext_resource type="Script" path="res://items/natalie.gd" id="2_k3xno"]
+[ext_resource type="Material" uid="uid://b2e6dxi2duce1" path="res://models/mat_natalie.tres" id="3_fqi47"]
+[ext_resource type="Material" uid="uid://cfq2p3kp8pn3d" path="res://models/mat_dress.tres" id="4_2dqju"]
+[ext_resource type="Material" uid="uid://btsrslcv0nwwt" path="res://models/mat_skirt.tres" id="5_1v6nm"]
 
 [node name="Natalie" instance=ExtResource("1_owgmo")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -25,6 +28,15 @@ bones/64/rotation = Quaternion(-0.614513, -0.128673, -0.107333, 0.770906)
 bones/67/rotation = Quaternion(-0.62539, 0.499381, -0.553653, 0.23016)
 bones/69/rotation = Quaternion(0.123432, 0.000535185, -0.00604087, 0.992334)
 bones/71/rotation = Quaternion(-0.632224, 0.125388, 0.111822, 0.756351)
+
+[node name="Natalie" parent="Natalie-RIG_deform/Skeleton3D" index="0"]
+surface_material_override/0 = ExtResource("3_fqi47")
+
+[node name="Natalie-Dress" parent="Natalie-RIG_deform/Skeleton3D" index="1"]
+surface_material_override/0 = ExtResource("4_2dqju")
+
+[node name="Natalie-Skirt" parent="Natalie-RIG_deform/Skeleton3D" index="2"]
+surface_material_override/0 = ExtResource("5_1v6nm")
 
 [node name="AnimationPlayer" parent="." index="1"]
 speed_scale = 2.0

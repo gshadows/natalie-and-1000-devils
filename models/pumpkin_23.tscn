@@ -1,5 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://7kjvq0pmicno"]
+[gd_scene load_steps=3 format=3 uid="uid://7kjvq0pmicno"]
 
 [ext_resource type="PackedScene" uid="uid://dmg6njv5lun50" path="res://models/pumpkin23.glb" id="1_yxwcb"]
+[ext_resource type="Material" uid="uid://b1ro1hb065tcy" path="res://models/mat_pumpkin.tres" id="2_1emko"]
 
 [node name="Pumpkin23" instance=ExtResource("1_yxwcb")]
+
+[node name="Pumpkin23" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_1emko")

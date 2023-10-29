@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhxejqk0wpok1"]
+
+[ext_resource type="PackedScene" uid="uid://0f7ly3hyiqd" path="res://models/tabouret.glb" id="1_e5gbx"]
+[ext_resource type="Material" uid="uid://b0yydjil2d8vm" path="res://models/mat_wood.tres" id="2_32q7q"]
+
+[node name="tabouret" instance=ExtResource("1_e5gbx")]
+
+[node name="Tabouret" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.24521e-06, 0, -0.00483263)
+surface_material_override/0 = ExtResource("2_32q7q")

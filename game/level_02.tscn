@@ -1,16 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://cnkus4ajhmk00"]
+[gd_scene load_steps=13 format=3 uid="uid://dx42ra0txy4n6"]
 
-[ext_resource type="Script" path="res://game/level.gd" id="1_xxclm"]
-[ext_resource type="PackedScene" uid="uid://b04ekwon83xir" path="res://models/room_1.tscn" id="2_e6ujj"]
-[ext_resource type="PackedScene" uid="uid://bq6vhqrwsv47g" path="res://models/shelf_for_jars.tscn" id="3_bxfq2"]
-[ext_resource type="PackedScene" uid="uid://ivqptk45j2ej" path="res://models/stove.tscn" id="4_llqp5"]
-[ext_resource type="PackedScene" uid="uid://dbu1l4b281xxf" path="res://models/table.tscn" id="5_crs22"]
-[ext_resource type="PackedScene" uid="uid://bhxejqk0wpok1" path="res://models/tabouret.tscn" id="6_yg8la"]
-[ext_resource type="PackedScene" uid="uid://d07fw7i4rldnv" path="res://items/pumpkin.tscn" id="7_dqhku"]
-[ext_resource type="PackedScene" uid="uid://ct8u7rdddrq8j" path="res://items/natalie.tscn" id="8_wlwx1"]
-[ext_resource type="AudioStream" uid="uid://codkuok2yfitu" path="res://audio/music_zapsplat_daft_cat_117.mp3" id="9_5gj2k"]
+[ext_resource type="Script" path="res://game/level.gd" id="1_fdel1"]
+[ext_resource type="PackedScene" uid="uid://b04ekwon83xir" path="res://models/room_1.tscn" id="2_f7722"]
+[ext_resource type="PackedScene" uid="uid://bq6vhqrwsv47g" path="res://models/shelf_for_jars.tscn" id="3_02klg"]
+[ext_resource type="PackedScene" uid="uid://ivqptk45j2ej" path="res://models/stove.tscn" id="4_idp2x"]
+[ext_resource type="PackedScene" uid="uid://dbu1l4b281xxf" path="res://models/table.tscn" id="5_el2q2"]
+[ext_resource type="PackedScene" uid="uid://bhxejqk0wpok1" path="res://models/tabouret.tscn" id="6_tfksi"]
+[ext_resource type="PackedScene" uid="uid://d07fw7i4rldnv" path="res://items/pumpkin.tscn" id="7_cu1d4"]
+[ext_resource type="PackedScene" uid="uid://ct8u7rdddrq8j" path="res://items/natalie.tscn" id="8_1rp84"]
+[ext_resource type="AudioStream" uid="uid://codkuok2yfitu" path="res://audio/music_zapsplat_daft_cat_117.mp3" id="9_yodtg"]
 
-[sub_resource type="GDScript" id="GDScript_luxmw"]
+[sub_resource type="GDScript" id="GDScript_t3lo7"]
 script/source = "extends OmniLight3D
 
 const MAX_ENERGY := 1.5
@@ -70,29 +70,27 @@ func _unhandled_input(event):
 		return
 "
 
-[node name="Level-01" type="Node3D" node_paths=PackedStringArray("shelf_left", "shelf_right", "x_limit_left", "x_limit_right")]
+[node name="Level-02" type="Node3D" node_paths=PackedStringArray("shelf_left", "shelf_right", "x_limit_left", "x_limit_right")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.761632)
-script = ExtResource("1_xxclm")
-next_level = "res://game/level_02.tscn"
+script = ExtResource("1_fdel1")
 shelf_left = NodePath("Markers/JarLeft")
 shelf_right = NodePath("Markers/JarRight")
 x_limit_left = NodePath("Markers/BorderLeft")
 x_limit_right = NodePath("Markers/BorderRight")
-devils_count = 5
-concurrent_devils = 1
+start_delay_sec = 1
 
 [node name="Statics" type="Node3D" parent="."]
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Walls" parent="Statics" instance=ExtResource("2_e6ujj")]
+[node name="Walls" parent="Statics" instance=ExtResource("2_f7722")]
 metadata/_edit_lock_ = true
 
-[node name="shelf_for_jars" parent="Statics" instance=ExtResource("3_bxfq2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.804005, 0, -1.74106)
+[node name="shelf_for_jars" parent="Statics" instance=ExtResource("3_02klg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.318697, 0, -1.74106)
 
-[node name="stove" parent="Statics" instance=ExtResource("4_llqp5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.00822, 0, -1.44772)
+[node name="stove" parent="Statics" instance=ExtResource("4_idp2x")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, -3.11388, 0, -1.44772)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Statics/stove"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.50435, 0.294781, -0.00202)
@@ -102,13 +100,16 @@ light_size = 0.28
 shadow_enabled = true
 shadow_blur = 0.0
 omni_range = 4.0
-script = SubResource("GDScript_luxmw")
+script = SubResource("GDScript_t3lo7")
 
-[node name="table" parent="Statics" instance=ExtResource("5_crs22")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5137, 0, -0.976978)
+[node name="table" parent="Statics" instance=ExtResource("5_el2q2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.53562, 0, 0.132742)
 
-[node name="tabouret" parent="Statics" instance=ExtResource("6_yg8la")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25551, 0, -1.2196)
+[node name="table2" parent="Statics" instance=ExtResource("5_el2q2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.51712, 0, -1.02557)
+
+[node name="tabouret" parent="Statics" instance=ExtResource("6_tfksi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55014, 0, -1.15981)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Statics"]
 transform = Transform3D(0.999743, -0.0226876, -9.91706e-10, 0, -4.37114e-08, 1, -0.0226876, -0.999743, -4.37001e-08, 0, 5.49856, 6.18826)
@@ -117,7 +118,7 @@ shadow_enabled = true
 shadow_opacity = 0.5
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Statics"]
-transform = Transform3D(0.999743, -0.0226876, -2.94255e-09, 0.0161347, 0.710985, 0.703022, -0.0159499, -0.702842, 0.711168, 0, 5.49856, 6.18826)
+transform = Transform3D(0.999743, -0.0226876, -5.96857e-09, 0.0161347, 0.710985, 0.703022, -0.0159499, -0.702842, 0.711168, 0, 5.49856, 6.18826)
 light_energy = 0.182
 light_indirect_energy = 0.0
 light_bake_mode = 1
@@ -133,39 +134,42 @@ fov = 90.0
 [node name="Markers" type="Node" parent="."]
 
 [node name="JarLeft" type="Marker3D" parent="Markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2.34, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.85141, 2.34, -1)
 
 [node name="JarRight" type="Marker3D" parent="Markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, 2.34, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.49859, 2.34, -1)
 
 [node name="BorderLeft" type="Marker3D" parent="Markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 0, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83774, 0, 0.5)
 
 [node name="BorderRight" type="Marker3D" parent="Markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.45, 0, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85682, 0, 0.5)
 
 [node name="Pumpkins" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.75)
 
-[node name="Pumpkin1" parent="Pumpkins" instance=ExtResource("7_dqhku")]
-transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, -3.547, 0.895278, 0)
+[node name="Pumpkin1" parent="Pumpkins" instance=ExtResource("7_cu1d4")]
+transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, -3.25959, 0.895278, 0.289753)
 
-[node name="Pumpkin2" parent="Pumpkins" instance=ExtResource("7_dqhku")]
-transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, -2.22835, 0.393894, -0.410858)
+[node name="Pumpkin2" parent="Pumpkins" instance=ExtResource("7_cu1d4")]
+transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, 1.49287, 0.393894, -0.269413)
 
-[node name="Pumpkin3" parent="Pumpkins" instance=ExtResource("7_dqhku")]
-transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, 2.24155, 1.0057, -0.525545)
+[node name="Pumpkin3" parent="Pumpkins" instance=ExtResource("7_cu1d4")]
+transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, -2.30088, 1.0057, -0.525545)
 
-[node name="Pumpkin4" parent="Pumpkins" instance=ExtResource("7_dqhku")]
-transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, 3.51968, -0.02127, 0.359028)
+[node name="Pumpkin4" parent="Pumpkins" instance=ExtResource("7_cu1d4")]
+transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, 3.18268, 0.877387, 0.359028)
 
-[node name="Pumpkin5" parent="Pumpkins" instance=ExtResource("7_dqhku")]
-transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, -0.948244, -0.02127, 0.359028)
+[node name="Pumpkin5" parent="Pumpkins" instance=ExtResource("7_cu1d4")]
+transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, -1.87782, -0.02127, 0.359028)
 
-[node name="Pumpkin6" parent="Pumpkins" instance=ExtResource("7_dqhku")]
+[node name="Pumpkin6" parent="Pumpkins" instance=ExtResource("7_cu1d4")]
 transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, 0.705706, -0.02127, 0.359028)
 
-[node name="Natalie" parent="." instance=ExtResource("8_wlwx1")]
+[node name="Pumpkin7" parent="Pumpkins" instance=ExtResource("7_cu1d4")]
+transform = Transform3D(1, 0, 0, 0, 0.999838, -0.0179985, 0, 0.0179985, 0.999838, 3.1883, -0.02127, 0.359028)
+
+[node name="Natalie" parent="." instance=ExtResource("8_1rp84")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, -0.57)
 
 [node name="FlyFlyUD" type="Node3D" parent="Natalie"]
@@ -180,7 +184,7 @@ keep_aspect = 0
 fov = 90.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_5gj2k")
+stream = ExtResource("9_yodtg")
 autoplay = true
 bus = &"Music"
 

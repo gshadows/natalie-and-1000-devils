@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq6vhqrwsv47g"]
+
+[ext_resource type="PackedScene" uid="uid://dr3k20qm3wclg" path="res://models/shelf_for_jars.glb" id="1_ted8i"]
+[ext_resource type="Material" uid="uid://b0yydjil2d8vm" path="res://models/mat_wood.tres" id="2_5dpp7"]
+
+[node name="shelf_for_jars" instance=ExtResource("1_ted8i")]
+
+[node name="ShelfForJars" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00221682, 2.3, -0.00121856)
+surface_material_override/0 = ExtResource("2_5dpp7")

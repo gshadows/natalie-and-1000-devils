@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbu1l4b281xxf"]
+
+[ext_resource type="PackedScene" uid="uid://bwel2dcdja5yt" path="res://models/table.glb" id="1_8m20h"]
+[ext_resource type="Material" uid="uid://b0yydjil2d8vm" path="res://models/mat_wood.tres" id="2_tigtq"]
+
+[node name="table" instance=ExtResource("1_8m20h")]
+
+[node name="Table" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000894666, 0, -0.000953197)
+surface_material_override/0 = ExtResource("2_tigtq")

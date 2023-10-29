@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ivqptk45j2ej"]
+
+[ext_resource type="PackedScene" uid="uid://s0iwctpb8jrw" path="res://models/stove.glb" id="1_8ls1n"]
+[ext_resource type="Material" uid="uid://c3qt0kseeai0p" path="res://models/mat_stove.tres" id="2_pduip"]
+
+[node name="stove" instance=ExtResource("1_8ls1n")]
+
+[node name="Stove" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00262451, 0, -0.00198698)
+surface_material_override/0 = ExtResource("2_pduip")
