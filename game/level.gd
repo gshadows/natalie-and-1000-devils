@@ -3,6 +3,7 @@ extends Node3D
 
 signal win
 signal loose
+signal devils_count_changed(count: int)
 
 const CATCH_DISTANCE_X := 0.5
 const CATCH_DISTANCE_Y := 0.2
@@ -65,6 +66,7 @@ func _ready() -> void:
 	Game.score.clear_level_totals()
 	Game.level_devils = devils_count
 	Game.level_pumpkins = _pumpkins.get_child_count()
+	devils_count_changed.emit(devils_count)
 
 func _init_devils() -> void:
 	await get_tree().create_timer(start_delay_sec).timeout
@@ -158,6 +160,7 @@ func _caught(pumpkin: Pumpkin) -> void:
 	await devil.jarred # Wait until devil scare animation finished.
 	pumpkin.position.z += PUMPKIN_CATCH_SHIFT
 	_cought += 1
+	devils_count_changed.emit(devils_count - _cought)
 	Game.score.devils_level += 1
 	if _cought >= devils_count:
 		_win()

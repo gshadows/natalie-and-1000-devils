@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dx42ra0txy4n6"]
+[gd_scene load_steps=14 format=3 uid="uid://dx42ra0txy4n6"]
 
 [ext_resource type="Script" path="res://game/level.gd" id="1_fdel1"]
 [ext_resource type="PackedScene" uid="uid://b04ekwon83xir" path="res://models/room_1.tscn" id="2_f7722"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d07fw7i4rldnv" path="res://items/pumpkin.tscn" id="7_cu1d4"]
 [ext_resource type="PackedScene" uid="uid://ct8u7rdddrq8j" path="res://items/natalie.tscn" id="8_1rp84"]
 [ext_resource type="AudioStream" uid="uid://codkuok2yfitu" path="res://audio/music_zapsplat_daft_cat_117.mp3" id="9_yodtg"]
+[ext_resource type="PackedScene" uid="uid://dtwtohydjfd6w" path="res://menu/game_ui.tscn" id="10_mqsfj"]
 
 [sub_resource type="GDScript" id="GDScript_t3lo7"]
 script/source = "extends OmniLight3D
@@ -188,4 +189,7 @@ stream = ExtResource("9_yodtg")
 autoplay = true
 bus = &"Music"
 
+[node name="GameUI" parent="." instance=ExtResource("10_mqsfj")]
+
+[connection signal="devils_count_changed" from="." to="GameUI" method="on_devils_update"]
 [connection signal="catching" from="Natalie" to="." method="_on_natalie_catching"]
