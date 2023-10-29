@@ -3,7 +3,8 @@ extends Node3D
 signal win
 signal loose
 
-const CATCH_DISTANCE := 0.5
+const CATCH_DISTANCE_X := 0.5
+const CATCH_DISTANCE_Y := 0.2
 const PUMPKIN_CATCH_SHIFT := 0.3
 
 @export_category("Scene Configuration")
@@ -108,24 +109,27 @@ func _next_devil() -> void:
 	var pumpkin: Pumpkin
 	while true:
 		pumpkin = _pumpkins.get_child(randi() % count) as Pumpkin
-		if not pumpkin.active: break
+		if not pumpkin.haunted: break
 	print("Activate devil in ", pumpkin)
 	pumpkin.activate_devil()
 	pumpkin.finished.connect(_pumpkin_finished)
 
 
-func _on_natalie_catching(x: float) -> void:
+func _on_natalie_catching(point: Vector3) -> void:
 	for pumpkin in _pumpkins.get_children():
-		if pumpkin.active and absf(x - pumpkin.global_position.x) <= CATCH_DISTANCE:
-			_caught(pumpkin)
-			return
+		if pumpkin.active:
+			var dx := absf(point.x - pumpkin.global_position.x)
+			if dx <= CATCH_DISTANCE_X:
+				var dy := absf(point.y - pumpkin.global_position.y)
+				if dy <= CATCH_DISTANCE_Y:
+					_caught(pumpkin)
+					return
 	# Missed
 
 
 func _caught(pumpkin: Pumpkin) -> void:
 	# Notify pumpkin that devil was caught.
 	print("Caught ", pumpkin)
-	var pumpkin_pos := pumpkin.global_position # Save here before it go out of tree.
 	pumpkin.on_catch()
 	pumpkin.finished.disconnect(_pumpkin_finished)
 	pumpkin.position.z -= PUMPKIN_CATCH_SHIFT

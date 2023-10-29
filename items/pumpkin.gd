@@ -14,7 +14,8 @@ signal finished
 @onready var _anim = $AnimationPlayer
 @onready var _sfx = $AudioStreamPlayer
 
-var active := false
+var haunted := false # Devil inside
+var active := false # Devil finished waiting and become active
 var _period_ms := 0
 var _next_bite_time: int
 var _size_left = 3
@@ -26,6 +27,7 @@ func _play(stream: AudioStream):
 
 
 func activate_devil() -> void:
+	haunted = true
 	_period_ms = randi_range(MIN_PERIOD_MS, MAX_PERIOD_MS)
 	await get_tree().create_timer(randf_range(MIN_HAUNT_DELAY_SEC, MAX_HAUNT_DELAY_SEC)).timeout
 	_play(_snd_shake)
@@ -74,4 +76,5 @@ func _on_finished() -> void:
 
 
 func on_catch() -> void:
+	haunted = false
 	active = false

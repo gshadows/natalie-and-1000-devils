@@ -1,7 +1,7 @@
 class_name Natalie
 extends Node3D
 
-signal catching(x: float)
+signal catching(point: Vector3)
 
 const EPSILON := 0.01 # floating point zero comparision threshold
 const RUN_SPEED := 3.0
@@ -54,6 +54,8 @@ func _process(delta: float) -> void:
 	_movement(delta, Input.get_axis("go_left", "go_right"))
 	var catch_changed := _catch(delta)
 	_jar_move(delta, catch_changed)
+	if catch_changed and _is_catching:
+		catching.emit(_jar.global_position)
 
 
 func _movement(delta: float, amount: float) -> void:
@@ -105,8 +107,6 @@ func _rotate_bone(radians: float, start_pose: Transform3D, bone_idx: int) -> voi
 # Returns true on catching state change.
 func _catch(_delta: float) -> bool:
 	if Input.is_action_just_pressed("catch"):
-		var jar_x: float = _jar.global_position.x
-		catching.emit(jar_x)
 		_play(_snd_catch)
 		_is_catching = true
 		return true
