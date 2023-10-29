@@ -1,3 +1,4 @@
+class_name Level
 extends Node3D
 
 signal win
@@ -8,6 +9,7 @@ const CATCH_DISTANCE_Y := 0.2
 const PUMPKIN_CATCH_SHIFT := 0.3
 
 @export_category("Scene Configuration")
+@export_file("*.tscn") var next_level = ""
 # Markers below will be deleted after _ready()
 @export var shelf_left: Node3D
 @export var shelf_right: Node3D
@@ -57,6 +59,10 @@ func _ready() -> void:
 	Game.cheat_winwin.connect(_win)
 	Game.cheat_looser.connect(_loose)
 	Game.cheat_flyfly.connect(_on_flyfly)
+	
+	# Prepare scores
+	Game.level_devils = devils_count
+	Game.level_pumpkins = _pumpkins.get_child_count()
 
 func _init_devils() -> void:
 	await get_tree().create_timer(start_delay_sec).timeout
@@ -156,8 +162,10 @@ func _caught(pumpkin: Pumpkin) -> void:
 
 
 func _loose() -> void:
+	await get_tree().create_timer(2).timeout
 	loose.emit()
 
 
 func _win() -> void:
+	await get_tree().create_timer(2).timeout
 	win.emit()

@@ -25,6 +25,8 @@ var is_nsfw := false
 var is_flyfly := false
 
 var score: Score
+var level_devils: int
+var level_pumpkins: int
 
 
 func _ready():
