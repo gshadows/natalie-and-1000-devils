@@ -110,9 +110,7 @@ func _next_devil() -> void:
 		if not pumpkin.active: break
 	print("Activate devil in ", pumpkin)
 	pumpkin.activate_devil()
-	var res = pumpkin.finished.connect(_pumpkin_finished)
-	if res == ERR_INVALID_PARAMETER:
-		pass
+	pumpkin.finished.connect(_pumpkin_finished)
 
 
 func _on_natalie_catching(x: float) -> void:
@@ -128,6 +126,7 @@ func _caught(pumpkin: Pumpkin) -> void:
 	print("Caught ", pumpkin)
 	var pumpkin_pos := pumpkin.global_position # Save here before it go out of tree.
 	pumpkin.on_catch()
+	pumpkin.finished.disconnect(_pumpkin_finished)
 	# Move all jars to make place for a new one.
 	var delta_pos := (_jar_x2 - _jar_x1) / (_shelf.get_child_count() + 2)
 	var pos := _jar_x1 + delta_pos
@@ -137,8 +136,8 @@ func _caught(pumpkin: Pumpkin) -> void:
 	# Finally add new jar with devil.
 	var devil := _devil_scene.instantiate()
 	devil.name = "Devil"
-	devil.global_position = pumpkin_pos
 	_shelf.add_child(devil)
+	devil.global_position = pumpkin.global_position
 	devil.on_revealed(pos)
 	await devil.jarred # Wait until devil scare animation finished.
 	_cought += 1

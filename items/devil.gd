@@ -4,8 +4,8 @@ extends Node3D
 signal jarred
 
 const MOVE_TIME_SEC := 1.0
-const MIN_TIME := 2.0
-const MAX_TIME := 7.0
+const MIN_TIME := 5.0
+const MAX_TIME := 10.0
 
 @onready var _sfx := $AudioStreamPlayer
 @onready var _anim := $AnimationPlayer
