@@ -3,7 +3,7 @@
 
 Download from Itch: https://gshadow.itch.io/natalie-and-1000-devils
 
-![Natalie and 1000 Devils cover image](docs/Cover.png)
+![Natalie and 1000 Devils cover image](docs/cover.jpg)
 
 **Software used:**
 * Godot 4.1.2
