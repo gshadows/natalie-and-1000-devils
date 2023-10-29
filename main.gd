@@ -35,16 +35,17 @@ func _on_load_game(scene_path: String) -> void:
 func _level_loose() -> void:
 	_on_load_game(END_LEVEL_SCENE)
 	_game.closed.connect(Game.stop)
-	_game.setup(false)
+	_game.setup(false, false)
 
 func _level_win() -> void:
 	var next_level = _game.next_level
 	_on_load_game(END_LEVEL_SCENE)
 	if not next_level or (next_level == ""):
 		_game.closed.connect(Game.stop)
+		_game.setup(true, true)
 	else:
 		_game.closed.connect(_on_load_game.bind(next_level))
-	_game.setup(true)
+		_game.setup(true, false)
 
 func _level_switch() -> void:
 	pass

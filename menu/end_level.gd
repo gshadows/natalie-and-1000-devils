@@ -21,9 +21,9 @@ func _on_closed() -> void:
 	closed.emit()
 
 
-func setup(is_win: bool) -> void:
-	%ButtonNext.visible = is_win
-	%ButtonEnd.visible = not is_win
+func setup(is_win: bool, is_last: bool) -> void:
+	%ButtonNext.visible = is_win and not is_last
+	%ButtonEnd.visible = not is_win or is_last
 	if is_win:
 		$MusicWin.play()
 	else:
