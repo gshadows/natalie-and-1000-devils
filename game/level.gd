@@ -3,7 +3,7 @@ extends Node3D
 signal win
 signal loose
 
-const CATCH_DISTANCE := 0.2
+const CATCH_DISTANCE := 0.5
 
 @export_category("Scene Configuration")
 # Markers below will be deleted after _ready()
@@ -126,16 +126,18 @@ func _on_natalie_catching(x: float) -> void:
 func _caught(pumpkin: Pumpkin) -> void:
 	# Notify pumpkin that devil was caught.
 	print("Caught ", pumpkin)
+	var pumpkin_pos := pumpkin.global_position # Save here before it go out of tree.
 	pumpkin.on_catch()
 	# Move all jars to make place for a new one.
-	var delta_pos = (_jar_x2 - _jar_x1) / (_shelf.get_child_count() + 2)
-	var pos := _jar_x1
+	var delta_pos := (_jar_x2 - _jar_x1) / (_shelf.get_child_count() + 2)
+	var pos := _jar_x1 + delta_pos
 	for jar in _shelf.get_children():
 		(jar as Devil).move_to(pos)
 		pos += delta_pos
 	# Finally add new jar with devil.
 	var devil := _devil_scene.instantiate()
 	devil.name = "Devil"
+	devil.global_position = pumpkin_pos
 	_shelf.add_child(devil)
 	devil.on_revealed(pos)
 	await devil.jarred # Wait until devil scare animation finished.

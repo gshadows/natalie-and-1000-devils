@@ -35,6 +35,7 @@ func _on_stop() -> void:
 	_menu.visible = true
 	_menu.on_show()
 	_game.queue_free()
+	_game = null
 
 func _on_pause() -> void:
 	_menu.visible = true

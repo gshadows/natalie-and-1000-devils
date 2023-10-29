@@ -35,7 +35,7 @@ func move_to(target_pos: Vector3, callback = null) -> void:
 	if _move_tween:
 		_move_tween.kill()
 	_move_tween = create_tween()
-	_move_tween.tween_property(self, "global_position", target_pos, MOVE_TIME_SEC).set_trans(Tween.TRANS_BOUNCE)
+	_move_tween.tween_property(self, "global_position", target_pos, MOVE_TIME_SEC).set_trans(Tween.TRANS_ELASTIC)
 	if callback:
 		_move_tween.tween_callback(callback)
 
@@ -44,10 +44,8 @@ func _on_jarred() -> void:
 	while not is_queued_for_deletion():
 		_timer.start(randf_range(MIN_TIME, MAX_TIME))
 		await _timer.timeout
-		if randi() % 20 == 0:
-			_play(_snd_jump)
+		if randi() % 100 < 50:
 			_anim.play("jumping")
 		else:
-			_play(_snd_shar)
 			_anim.play("sharoebica")
 		await _anim.animation_finished
