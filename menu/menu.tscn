@@ -195,6 +195,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 17.0
+offset_right = 15.0
+offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -434,6 +438,7 @@ mouse_default_cursor_shape = 2
 text = "ГОТОВО"
 
 [node name="InfoPanel" type="Panel" parent="."]
+visible = false
 clip_children = 2
 layout_mode = 1
 anchors_preset = 8
