@@ -4,6 +4,25 @@
 [ext_resource type="Script" path="res://items/devil.gd" id="2_hj5l0"]
 [ext_resource type="PackedScene" uid="uid://jxf7q2ecq3dj" path="res://items/jar.tscn" id="3_em54j"]
 
+[sub_resource type="Animation" id="Animation_g1eic"]
+resource_name = "caught"
+length = 0.9
+step = 0.05
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Devil")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.15, 1, 0, 0.0700581, 0, 0.3, 1, 0, 0, 0, 0.45, 1, 0, 0.0700581, 0, 0.6, 1, 0, 0, 0, 0.75, 1, 0, 0.0700581, 0, 0.9, 1, 0, 0, 0)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Jar")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.385524, 0, 0.9, 1, 0, 0, 0)
+
 [sub_resource type="Animation" id="Animation_62a4j"]
 resource_name = "jumping"
 length = 0.9
@@ -41,25 +60,6 @@ tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.5, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1.5, 1, -1, 1, 1, 2, 1, 1, 1, 1)
 
-[sub_resource type="Animation" id="Animation_g1eic"]
-resource_name = "caught"
-length = 0.9
-step = 0.05
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Devil")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.15, 1, 0, 0.0700581, 0, 0.3, 1, 0, 0, 0, 0.45, 1, 0, 0.0700581, 0, 0.6, 1, 0, 0, 0, 0.75, 1, 0, 0.0700581, 0, 0.9, 1, 0, 0, 0)
-tracks/1/type = "position_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Jar")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0.385524, 0, 0.9, 1, 0, 0, 0)
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vidx6"]
 _data = {
 "caught": SubResource("Animation_g1eic"),
@@ -71,7 +71,6 @@ _data = {
 script = ExtResource("2_hj5l0")
 
 [node name="Jar" parent="." index="1" instance=ExtResource("3_em54j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {

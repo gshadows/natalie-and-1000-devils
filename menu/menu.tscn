@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dapuwxsk7lcy2" path="res://audio/music_zapsplat_aiming_high.mp3" id="3_nwj2g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7qnn"]
-size = Vector2(379, 267)
+size = Vector2(360, 78)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhuim"]
 bg_color = Color(0.203922, 0.203922, 0.203922, 1)
@@ -226,7 +226,7 @@ monitoring = false
 monitorable = false
 
 [node name="ShapeCast2D" type="CollisionShape2D" parent="StartStopHover"]
-position = Vector2(663, 254)
+position = Vector2(672, 255)
 shape = SubResource("RectangleShape2D_w7qnn")
 
 [node name="ButtonStop" type="TextureButton" parent="."]

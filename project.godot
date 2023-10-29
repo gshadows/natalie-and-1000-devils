@@ -28,6 +28,11 @@ buses/default_bus_layout="res://config/default_bus_layout.tres"
 Game="*res://game.gd"
 Settings="*res://utils/settings.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="ignore"
+
 [filesystem]
 
 import/blender/enabled=false
