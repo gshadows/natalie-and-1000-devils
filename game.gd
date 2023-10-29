@@ -42,7 +42,7 @@ func _on_audio_setup_upd():
 	AudioServer.set_bus_mute(AUDIO_BUS_MUSIC, !Settings.audio.music_enabled)
 
 func _on_video_setup_upd():
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if Settings.video.full_screen else DisplayServer.WINDOW_MODE_MAXIMIZED)
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if Settings.video.full_screen else DisplayServer.WINDOW_MODE_WINDOWED)
 
 
 func start() -> void:
