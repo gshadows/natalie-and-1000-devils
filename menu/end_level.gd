@@ -2,9 +2,7 @@ extends TextureRect
 
 signal closed
 
-@onready var _anim := $AnimationPlayer
-@onready var _sfx := $MenuSFX
-@onready var _music := $MenuMusic
+@onready var _sfx := $SFX
 
 @onready var _snd_click = preload("res://audio/MenuClick-fs-448080.wav")
 @onready var _snd_hover = preload("res://audio/MenuHover-fs-420615.wav")
