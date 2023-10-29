@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ch0ch03hfvsb7"]
+[gd_scene load_steps=10 format=3 uid="uid://ch0ch03hfvsb7"]
 
 [ext_resource type="Texture2D" uid="uid://dyli44xe6mh45" path="res://sprites/menu_bg.png" id="1_yy21g"]
 [ext_resource type="Script" path="res://menu/end_level.gd" id="2_syyde"]
@@ -7,6 +7,7 @@
 [ext_resource type="LabelSettings" uid="uid://qr7ji3kpeo3g" path="res://menu/label_settings_score.tres" id="5_bmxsb"]
 [ext_resource type="Texture2D" uid="uid://dj4rug5pe5bx" path="res://sprites/theend.png" id="6_r0g6g"]
 [ext_resource type="Texture2D" uid="uid://c48qigr6mi762" path="res://sprites/next.png" id="7_i1how"]
+[ext_resource type="Texture2D" uid="uid://i1a1bawh63oh" path="res://sprites/cheater.png" id="9_r0nh2"]
 [ext_resource type="AudioStream" uid="uid://dapuwxsk7lcy2" path="res://audio/music_zapsplat_aiming_high.mp3" id="10_0wimg"]
 
 [node name="EndLevel" type="TextureRect"]
@@ -299,6 +300,24 @@ bus = &"Music"
 [node name="MusicLoose" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_0wimg")
 bus = &"Music"
+
+[node name="CheaterStamp" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -212.0
+offset_top = -122.0
+offset_right = 188.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.391736
+pivot_offset = Vector2(200, 100)
+texture = ExtResource("9_r0nh2")
 
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/ButtonEnd" to="." method="_play_hover"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonEnd" to="." method="_on_closed"]

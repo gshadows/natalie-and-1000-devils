@@ -28,6 +28,7 @@ func setup(is_win: bool) -> void:
 		$MusicWin.play()
 	else:
 		$MusicLoose.play()
+	%CheaterStamp.visible = Game.score.cheater
 	fill_scores()
 
 
