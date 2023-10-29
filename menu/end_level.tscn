@@ -1,0 +1,332 @@
+[gd_scene load_steps=13 format=3 uid="uid://ch0ch03hfvsb7"]
+
+[ext_resource type="Texture2D" uid="uid://dyli44xe6mh45" path="res://sprites/menu_bg.png" id="1_yy21g"]
+[ext_resource type="Script" path="res://menu/end_level.gd" id="2_syyde"]
+[ext_resource type="Texture2D" uid="uid://cgfgwxe5eu75y" path="res://sprites/game_title.png" id="3_vgkm7"]
+[ext_resource type="Texture2D" uid="uid://cngkl0reimsa6" path="res://sprites/empty.png" id="4_pcibo"]
+[ext_resource type="LabelSettings" uid="uid://qr7ji3kpeo3g" path="res://menu/label_settings_score.tres" id="5_bmxsb"]
+[ext_resource type="Texture2D" uid="uid://c6f6f5umffbp8" path="res://sprites/start.png" id="5_w2dcy"]
+[ext_resource type="AudioStream" uid="uid://dapuwxsk7lcy2" path="res://audio/music_zapsplat_aiming_high.mp3" id="10_0wimg"]
+
+[sub_resource type="Animation" id="Animation_3o5r6"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_codrw"]
+resource_name = "show_info"
+length = 0.5
+
+[sub_resource type="Animation" id="Animation_rmsby"]
+resource_name = "show_settings"
+length = 0.5
+
+[sub_resource type="Animation" id="Animation_fsihg"]
+resource_name = "show_stop"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m4cgt"]
+_data = {
+"RESET": SubResource("Animation_3o5r6"),
+"show_info": SubResource("Animation_codrw"),
+"show_settings": SubResource("Animation_rmsby"),
+"show_stop": SubResource("Animation_fsihg")
+}
+
+[node name="EndLevel" type="TextureRect"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_yy21g")
+expand_mode = 1
+stretch_mode = 1
+script = ExtResource("2_syyde")
+
+[node name="TitleLogo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -130.5
+offset_right = 130.5
+offset_bottom = 149.0
+grow_horizontal = 2
+texture = ExtResource("3_vgkm7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -284.0
+offset_top = -490.0
+offset_right = 284.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="DevilsCaught" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_pcibo")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/DevilsCaught"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/DevilsCaught/MarginContainer"]
+layout_mode = 2
+
+[node name="LabelDevils" type="Label" parent="MarginContainer/VBoxContainer/DevilsCaught/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Чёртиков поймано:"
+label_settings = ExtResource("5_bmxsb")
+
+[node name="Devils" type="Label" parent="MarginContainer/VBoxContainer/DevilsCaught/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0"
+label_settings = ExtResource("5_bmxsb")
+horizontal_alignment = 2
+
+[node name="LabelDevilsOf" type="Label" parent="MarginContainer/VBoxContainer/DevilsCaught/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = " из "
+label_settings = ExtResource("5_bmxsb")
+horizontal_alignment = 2
+
+[node name="DevilsOf" type="Label" parent="MarginContainer/VBoxContainer/DevilsCaught/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("5_bmxsb")
+horizontal_alignment = 2
+
+[node name="DevilsTotal" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_pcibo")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/DevilsTotal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/DevilsTotal/MarginContainer"]
+layout_mode = 2
+
+[node name="LabelDevils" type="Label" parent="MarginContainer/VBoxContainer/DevilsTotal/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Чёртиков за игру:"
+label_settings = ExtResource("5_bmxsb")
+
+[node name="DevilsTotal" type="Label" parent="MarginContainer/VBoxContainer/DevilsTotal/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0"
+label_settings = ExtResource("5_bmxsb")
+horizontal_alignment = 2
+
+[node name="PumpkinsLost" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_pcibo")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PumpkinsLost"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PumpkinsLost/MarginContainer"]
+layout_mode = 2
+
+[node name="LabelPumpLost" type="Label" parent="MarginContainer/VBoxContainer/PumpkinsLost/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Тыкв изгрызено:"
+label_settings = ExtResource("5_bmxsb")
+
+[node name="Pumpkins" type="Label" parent="MarginContainer/VBoxContainer/PumpkinsLost/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0"
+label_settings = ExtResource("5_bmxsb")
+horizontal_alignment = 2
+
+[node name="LabelPumpkinsOf" type="Label" parent="MarginContainer/VBoxContainer/PumpkinsLost/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = " из "
+label_settings = ExtResource("5_bmxsb")
+horizontal_alignment = 2
+
+[node name="PumpkinsOf" type="Label" parent="MarginContainer/VBoxContainer/PumpkinsLost/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("5_bmxsb")
+horizontal_alignment = 2
+
+[node name="PumpkinsTotal" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_pcibo")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PumpkinsTotal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PumpkinsTotal/MarginContainer"]
+layout_mode = 2
+
+[node name="LabelPumpTotals" type="Label" parent="MarginContainer/VBoxContainer/PumpkinsTotal/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Тыкв изгрызено за игру:"
+label_settings = ExtResource("5_bmxsb")
+
+[node name="PumpkinTotal" type="Label" parent="MarginContainer/VBoxContainer/PumpkinsTotal/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0"
+label_settings = ExtResource("5_bmxsb")
+horizontal_alignment = 2
+
+[node name="PumpkinsScore" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_pcibo")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PumpkinsScore"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PumpkinsScore/MarginContainer"]
+layout_mode = 2
+
+[node name="LabelPumpTotals" type="Label" parent="MarginContainer/VBoxContainer/PumpkinsScore/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Счёт за тыквы:"
+label_settings = ExtResource("5_bmxsb")
+
+[node name="PumpkinScore" type="Label" parent="MarginContainer/VBoxContainer/PumpkinsScore/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "+0"
+label_settings = ExtResource("5_bmxsb")
+horizontal_alignment = 2
+
+[node name="Score" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_pcibo")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Score"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Score/MarginContainer"]
+layout_mode = 2
+
+[node name="LabelScore" type="Label" parent="MarginContainer/VBoxContainer/Score/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "СЧЁТ:"
+label_settings = ExtResource("5_bmxsb")
+
+[node name="Score" type="Label" parent="MarginContainer/VBoxContainer/Score/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0 (+0)"
+label_settings = ExtResource("5_bmxsb")
+horizontal_alignment = 2
+
+[node name="ButtonEnd" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 10
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_w2dcy")
+stretch_mode = 3
+
+[node name="ButtonNext" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 10
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_w2dcy")
+stretch_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m4cgt")
+}
+
+[node name="MenuSFX" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="MusicWin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_0wimg")
+bus = &"Music"
+
+[node name="MusicLoose" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_0wimg")
+bus = &"Music"
+
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/ButtonEnd" to="." method="_play_hover"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonEnd" to="." method="_on_closed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/ButtonNext" to="." method="_play_hover"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonNext" to="." method="_on_closed"]
