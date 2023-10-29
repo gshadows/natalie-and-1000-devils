@@ -12,8 +12,6 @@ const MAX_TIME := 7.0
 @onready var _timer := $Timer
 
 @onready var _snd_scare = preload("res://audio/MenuClick-fs-448080.wav")
-@onready var _snd_shar = preload("res://audio/MenuHover-fs-420615.wav")
-@onready var _snd_jump = preload("res://audio/MenuHover-fs-420615.wav")
 
 var _move_tween = null
 
@@ -25,7 +23,8 @@ func _play(stream: AudioStream):
 
 func on_revealed(target_pos: Vector3) -> void:
 	_play(_snd_scare)
-	_anim.play("jumping")
+	_anim.play("caught")
+	$Jar/AnimationPlayer.play("fade_in")
 	await _anim.animation_finished
 	jarred.emit()
 	move_to(target_pos, _on_jarred)

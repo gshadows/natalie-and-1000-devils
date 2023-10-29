@@ -1,9 +1,51 @@
-[gd_scene load_steps=3 format=3 uid="uid://jxf7q2ecq3dj"]
+[gd_scene load_steps=6 format=3 uid="uid://jxf7q2ecq3dj"]
 
 [ext_resource type="PackedScene" uid="uid://5hwhj0mslde8" path="res://models/jar.glb" id="1_mhdkw"]
 [ext_resource type="Material" uid="uid://b0xnt4l0tu2vc" path="res://models/mat_jar.tres" id="2_6g0jl"]
+
+[sub_resource type="Animation" id="Animation_7mq8n"]
+resource_name = "fade_in"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jar3:surface_material_override/0:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.517647)]
+}
+
+[sub_resource type="Animation" id="Animation_3kx25"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Jar3:surface_material_override/0:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.517647)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b1shm"]
+_data = {
+"RESET": SubResource("Animation_3kx25"),
+"fade_in": SubResource("Animation_7mq8n")
+}
 
 [node name="Jar" instance=ExtResource("1_mhdkw")]
 
 [node name="Jar3" parent="." index="0"]
 surface_material_override/0 = ExtResource("2_6g0jl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_b1shm")
+}
