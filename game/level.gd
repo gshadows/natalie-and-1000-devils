@@ -4,6 +4,7 @@ signal win
 signal loose
 
 const CATCH_DISTANCE := 0.5
+const PUMPKIN_CATCH_SHIFT := 0.3
 
 @export_category("Scene Configuration")
 # Markers below will be deleted after _ready()
@@ -127,7 +128,7 @@ func _caught(pumpkin: Pumpkin) -> void:
 	var pumpkin_pos := pumpkin.global_position # Save here before it go out of tree.
 	pumpkin.on_catch()
 	pumpkin.finished.disconnect(_pumpkin_finished)
-	pumpkin.visible = false
+	pumpkin.position.z -= PUMPKIN_CATCH_SHIFT
 	# Move all jars to make place for a new one.
 	var delta_pos := (_jar_x2 - _jar_x1) / (_shelf.get_child_count() + 2)
 	var pos := _jar_x1 + delta_pos
@@ -139,9 +140,10 @@ func _caught(pumpkin: Pumpkin) -> void:
 	devil.name = "Devil"
 	_shelf.add_child(devil)
 	devil.global_position = pumpkin.global_position
+	devil.position.z += PUMPKIN_CATCH_SHIFT
 	devil.on_revealed(pos)
 	await devil.jarred # Wait until devil scare animation finished.
-	pumpkin.visible = true
+	pumpkin.position.z += PUMPKIN_CATCH_SHIFT
 	_cought += 1
 	if _cought >= devils_count:
 		_win()
