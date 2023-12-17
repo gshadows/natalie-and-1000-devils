@@ -15,8 +15,10 @@ config/description="A game for PGD Game Jam #13: You don't see it, but it exists
 (c) G-Shadow, 2023.
 Free sounds: https://freesound.org
 Free music: https://www.zapsplat.com"
+config/version="1.0.0"
+config/tags=PackedStringArray("jam")
 run/main_scene="res://main.tscn"
-config/features=PackedStringArray("4.1", "GL Compatibility")
+config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [audio]

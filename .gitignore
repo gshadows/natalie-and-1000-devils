@@ -34,3 +34,6 @@ mono_crash.*.json
 
 # Game settings when saved to current folder.
 settings.json
+
+# Commit 7Z only because of large size.
+models/natalie.glb
