@@ -3,7 +3,19 @@
 [ext_resource type="Script" path="res://main.gd" id="1_jlok8"]
 [ext_resource type="PackedScene" uid="uid://1a0sqergq7ku" path="res://menu/menu.tscn" id="2_yf53j"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node3D"]
 script = ExtResource("1_jlok8")
 
 [node name="MainMenu" parent="." instance=ExtResource("2_yf53j")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51013, 3.39367)
+keep_aspect = 0
+current = true
+fov = 90.0
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51013, 3.39367)
+visible = false
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]

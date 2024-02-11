@@ -72,3 +72,10 @@ catch={
 [rendering]
 
 renderer/rendering_method.mobile="gl_compatibility"
+
+[xr]
+
+openxr/enabled=true
+openxr/startup_alert=false
+openxr/extensions/hand_tracking=false
+shaders/enabled=true

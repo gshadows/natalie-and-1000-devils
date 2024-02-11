@@ -5,9 +5,21 @@ extends Node
 
 @onready var _menu = $MainMenu
 var _game: Node
+var xriface: XRInterface
 
 
 func _ready():
+	Game.camera_3d = $Camera3D
+	Game.xr_origin = $XROrigin3D
+	Game.xr_camera = $XROrigin3D/XRCamera3D
+
+	xriface = XRServer.find_interface("OpenXR") # OpenXR or OpenVR (SteamVR).
+	if xriface and xriface.is_initialized():
+		Game.xr_supported = true
+		#if xriface.is_passthrough_supported():
+		#	xriface.start_passthrough()
+	Game.select_main_camera()
+
 	if OS.is_debug_build() and (DisplayServer.get_screen_count() > 1):
 		DisplayServer.window_set_current_screen(DisplayServer.window_get_current_screen() ^ 1)
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)

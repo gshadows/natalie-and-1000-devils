@@ -15,6 +15,11 @@ signal cheat_looser
 @onready var AUDIO_BUS_MUSIC = AudioServer.get_bus_index("Music")
 @onready var AUDIO_BUS_SFX = AudioServer.get_bus_index("SFX")
 
+var xr_supported := false
+var camera_3d: Camera3D
+var xr_origin: XROrigin3D
+var xr_camera: XRCamera3D
+
 enum GAME_MODE { NONE, GAME, INTERTITLE, LOADING }
 var mode: GAME_MODE = GAME_MODE.NONE
 var mode_locked := false
@@ -99,3 +104,20 @@ func _check_cheats() -> void:
 		cheat_looser.emit()
 	elif OS.is_debug_build() and _cheats.ends_with("666666"):
 		score.cheater = false
+
+func select_main_camera() -> void:
+	if xr_supported:
+		xr_origin.visible = true
+		xr_origin.current = true
+		xr_camera.visible = true
+		xr_camera.current = true
+		camera_3d.visible = false
+		camera_3d.current = false
+		get_viewport().use_xr = true
+	else:
+		camera_3d.visible = true
+		camera_3d.current = true
+		xr_origin.visible = false
+		xr_origin.current = false
+		xr_camera.visible = false
+		xr_camera.current = false
